@@ -1,0 +1,2 @@
+# Migration files are generated here by: alembic revision --autogenerate -m "description"
+# This file keeps the directory tracked by git before any migrations exist.

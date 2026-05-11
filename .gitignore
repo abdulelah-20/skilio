@@ -1,0 +1,15 @@
+# Claude Code private files — never commit
+.claude/
+settings.local.json
+
+# Environment secrets
+.env
+.env.local
+
+# Local SQLite database artifacts
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
