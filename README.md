@@ -9,7 +9,7 @@
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-default-003B57?style=flat-square&logo=sqlite)
 ![MySQL](https://img.shields.io/badge/MySQL-supported-4479A1?style=flat-square&logo=mysql&logoColor=white)
-![Tests](https://img.shields.io/badge/Tests-pytest-blue?style=flat-square)
+![Tests](https://img.shields.io/badge/Tests-42%20passing-brightgreen?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 ---
@@ -39,11 +39,12 @@ Traditional child safety education is **passive** — children memorise rules bu
 ### Key Features
 
 - 🎮 **Branching scenario engine** — DAG-based story nodes with NPC dialogue and multiple-choice decisions
-- 👨‍👩‍👧 **Parent dashboard** — real-time tracking of each child's progress, XP, and badge awards
-- 🏅 **Gamification** — XP system, skill badges, and module completion rewards
-- 🔐 **Production-grade auth** — JWT access tokens + httpOnly refresh cookies with rotation and reuse detection
+- 👨‍👩‍👧 **Parent dashboard** — XP leaderboard, activity feed, module progress charts, and badge gallery
+- 🏅 **Gamification** — XP system, skill badges, module completion rewards, and real-time badge notifications
+- 🔐 **Production-grade auth** — JWT access tokens + httpOnly refresh cookies with rotation, reuse detection, and automatic session recovery on page reload
 - 🌍 **Multi-database** — SQLite (zero config), MySQL, or PostgreSQL — switched via a single env variable
 - 🐳 **Docker-ready** — full stack compose file included
+- 🛡️ **Error boundary** — catches uncaught render errors and shows a user-friendly recovery screen
 
 ---
 
@@ -65,7 +66,7 @@ Each world contains age-appropriate scenarios designed for children aged **4–1
 | **ORM** | SQLAlchemy 2.0 (Mapped[] type annotations) |
 | **Migrations** | Alembic |
 | **Database** | SQLite (default) · MySQL · PostgreSQL |
-| **Auth** | JWT HS256 + bcrypt + httpOnly refresh cookies |
+| **Auth** | JWT HS256 + bcrypt + httpOnly refresh cookies + startup session recovery |
 | **Frontend** | React 18 + Vite 5 + TypeScript |
 | **State Management** | TanStack React Query 5 + Zustand 4 |
 | **Routing** | React Router v6 |
@@ -270,6 +271,8 @@ Full interactive documentation is available at **`http://localhost:8000/docs`** 
 | `POST` | `/api/auth/refresh` | Auth | Rotate refresh token and issue new access token |
 | `POST` | `/api/auth/logout` | Auth | Revoke current refresh token |
 | `GET` | `/api/auth/me` | Auth | Get current authenticated user |
+| `POST` | `/api/auth/forgot-password` | Auth | Send password reset email |
+| `POST` | `/api/auth/reset-password` | Auth | Reset password with emailed token |
 | `GET` | `/api/users/me` | Users | Read own profile |
 | `PUT` | `/api/users/me` | Users | Update own full name |
 | `DELETE` | `/api/users/me` | Users | Soft-deactivate own account |
@@ -302,8 +305,10 @@ Full interactive documentation is available at **`http://localhost:8000/docs`** 
 | **Passwords** | bcrypt via passlib — intentionally slow, timing-attack safe. Dummy verify on unknown email prevents user enumeration. |
 | **Access Token** | JWT HS256 · 30-min expiry · Zustand memory only — **never written to localStorage or sessionStorage** |
 | **Refresh Token** | JWT · 7-day expiry · httpOnly cookie (JS cannot read) · SHA-256 hashed before DB storage |
+| **Session Recovery** | `AuthProvider` calls `/auth/refresh` on every page load — users stay logged in after hard refresh |
 | **Token Rotation** | Each `/auth/refresh` revokes the old token and issues a new pair atomically |
 | **Reuse Detection** | Revoked token replayed → **all tokens for that user wiped immediately** (prevents replay attacks) |
+| **Secure Cookie** | `secure` flag enabled in production (`DEBUG=false`), disabled in local dev |
 | **Ownership Guard** | Every child route checks `child.parent_id == current_user.id` in `Depends()`. Returns 404 for both "not found" and "wrong owner" |
 | **Rate Limiting** | 10 logins/min, 5 registrations/min per client IP. In-memory sliding window. Returns 429 with `Retry-After` header |
 | **Size Limiting** | Content-Length checked before body parsing. Max 1 MB. Returns 413 with clear error message |
@@ -323,6 +328,21 @@ python -m pytest tests -v
 ```
 
 The test suite has **42 tests** across 2 files covering authentication, children management, modules, lessons, the scenario engine (start/resume/choose/complete), progress tracking, badge awards, and child management (update, soft-delete, ownership guards).
+
+---
+
+## Parent Dashboard Features
+
+The parent dashboard loads child data in parallel using `useQueries` and renders four analytics sections:
+
+| Section | Description |
+|---|---|
+| 🏆 **XP Leaderboard** | Ranks all siblings by total XP with 🥇🥈🥉 medals. Only shown when there are 2+ children. |
+| 📋 **Recent Activity** | Live timeline of badge awards and module sessions, sorted by timestamp with relative time labels ("2h ago"). |
+| 📊 **Module Progress** | Per-child progress bars for every module they've started — green when complete, purple when in progress. |
+| 🏅 **Badge Gallery** | All badges earned across all children in a responsive card grid, labelled with each child's name. |
+
+All sections are data-driven — nothing is hardcoded. An empty state is shown for each section until the child has activity.
 
 ---
 
