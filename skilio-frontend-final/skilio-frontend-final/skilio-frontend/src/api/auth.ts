@@ -1,6 +1,14 @@
 // src/api/auth.ts
 import apiClient from './client'
-import type { LoginCredentials, RegisterPayload, Token, User } from '@/types'
+import type {
+  ForgotPasswordPayload,
+  LoginCredentials,
+  MessageResponse,
+  RegisterPayload,
+  ResetPasswordPayload,
+  Token,
+  User,
+} from '@/types'
 
 export const authApi = {
   /**
@@ -25,9 +33,32 @@ export const authApi = {
     return data
   },
 
+  /** POST /api/auth/forgot-password */
+  forgotPassword: async (payload: ForgotPasswordPayload): Promise<MessageResponse> => {
+    const { data } = await apiClient.post<MessageResponse>('/api/auth/forgot-password', payload)
+    return data
+  },
+
+  /** POST /api/auth/reset-password */
+  resetPassword: async (payload: ResetPasswordPayload): Promise<MessageResponse> => {
+    const { data } = await apiClient.post<MessageResponse>('/api/auth/reset-password', payload)
+    return data
+  },
+
   /** GET /api/auth/me */
   getMe: async (): Promise<User> => {
     const { data } = await apiClient.get<User>('/api/auth/me')
     return data
+  },
+
+  /** POST /api/auth/refresh — exchanges the httpOnly refresh cookie for a new access token */
+  refresh: async (): Promise<Token> => {
+    const { data } = await apiClient.post<Token>('/api/auth/refresh')
+    return data
+  },
+
+  /** POST /api/auth/logout */
+  logout: async (): Promise<void> => {
+    await apiClient.post('/api/auth/logout')
   },
 }

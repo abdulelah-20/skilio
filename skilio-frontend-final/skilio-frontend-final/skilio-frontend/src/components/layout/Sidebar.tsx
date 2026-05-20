@@ -26,7 +26,7 @@ export function Sidebar() {
   function handleLogout() {
     clearAuth()
     qc.clear()
-    navigate('/login', { replace: true })
+    navigate('/', { replace: true })
   }
 
   return (

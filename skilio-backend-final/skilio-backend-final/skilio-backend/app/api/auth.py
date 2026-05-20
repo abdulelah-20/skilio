@@ -8,7 +8,7 @@ Authentication endpoints with:
   - Single-use token rotation with reuse detection
   - In-memory rate limiting (10 logins/min, 5 registrations/min per IP)
 """
-import hashlib
+import secrets
 import time
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
@@ -20,9 +20,18 @@ from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.core.dependencies import get_db, get_current_user
-from app.core.security import create_access_token, create_refresh_token, decode_token
+from app.core.security import create_access_token, create_refresh_token, decode_token, hash_password
+from app.models.password_reset import PasswordResetToken
 from app.models.token import RefreshToken
-from app.schemas.user import Token, UserCreate, UserResponse
+from app.schemas.user import (
+    ForgotPasswordRequest,
+    ForgotPasswordResponse,
+    ResetPasswordRequest,
+    Token,
+    UserCreate,
+    UserResponse,
+)
+from app.services.email_service import send_password_reset_email
 
 router = APIRouter()
 settings = get_settings()
@@ -30,7 +39,7 @@ settings = get_settings()
 COOKIE = "skilio_refresh"
 COOKIE_OPTS = dict(
     httponly=True,
-    secure=False,          # set True in production (HTTPS)
+    secure=not settings.debug,   # True in production (HTTPS), False in local dev
     samesite="lax",
     max_age=settings.refresh_token_expire_days * 86400,
     path="/api/auth",
@@ -64,6 +73,12 @@ def _client_ip(request: Request) -> str:
     return request.client.host if request.client else "unknown"
 
 
+def _as_utc(dt: datetime) -> datetime:
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
 # ── Endpoints ─────────────────────────────────────────────────────────────────
 
 @router.post(
@@ -78,6 +93,67 @@ def register(user_in: UserCreate, request: Request, db: Session = Depends(get_db
     if get_user_by_email(db, user_in.email):
         raise HTTPException(409, "An account with this email already exists")
     return create_user(db, user_in)
+
+
+@router.post(
+    "/forgot-password",
+    response_model=ForgotPasswordResponse,
+    summary="Send a password reset email",
+)
+def forgot_password(payload: ForgotPasswordRequest, request: Request, db: Session = Depends(get_db)):
+    _check_rate(f"forgot-password:{_client_ip(request)}", 5)
+    from app.services.auth_service import get_user_by_email
+
+    generic = ForgotPasswordResponse(
+        message="If that email is registered, we sent a password reset link.",
+    )
+    user = get_user_by_email(db, payload.email.lower())
+    if not user or not user.is_active:
+        return generic
+
+    db.query(PasswordResetToken).filter_by(user_id=user.id, used=False).update({"used": True})
+    raw_token = secrets.token_urlsafe(48)
+    expires = datetime.now(timezone.utc) + timedelta(minutes=settings.password_reset_token_expire_minutes)
+    db.add(
+        PasswordResetToken(
+            user_id=user.id,
+            token_hash=PasswordResetToken.hash_token(raw_token),
+            expires_at=expires,
+        )
+    )
+    db.commit()
+
+    reset_url = f"{settings.frontend_url.rstrip('/')}/reset-password?token={raw_token}"
+    send_password_reset_email(user.email, reset_url)
+    return generic
+
+
+@router.post(
+    "/reset-password",
+    response_model=ForgotPasswordResponse,
+    summary="Reset password with an emailed token",
+)
+def reset_password(payload: ResetPasswordRequest, db: Session = Depends(get_db)):
+    token_hash = PasswordResetToken.hash_token(payload.token)
+    stored = (
+        db.query(PasswordResetToken)
+        .filter_by(token_hash=token_hash, used=False)
+        .first()
+    )
+    now = datetime.now(timezone.utc)
+    if not stored or _as_utc(stored.expires_at) < now:
+        raise HTTPException(400, "Reset link is invalid or has expired")
+
+    user = stored.user
+    if not user or not user.is_active:
+        raise HTTPException(400, "Reset link is invalid or has expired")
+
+    user.hashed_password = hash_password(payload.password)
+    stored.used = True
+    db.query(PasswordResetToken).filter_by(user_id=user.id, used=False).update({"used": True})
+    db.query(RefreshToken).filter_by(user_id=user.id).update({"revoked": True})
+    db.commit()
+    return ForgotPasswordResponse(message="Password updated. You can sign in with your new password.")
 
 
 @router.post(

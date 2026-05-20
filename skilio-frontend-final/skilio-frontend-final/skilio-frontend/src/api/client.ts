@@ -54,13 +54,13 @@ apiClient.interceptors.response.use(
 
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      // Token is invalid or expired — clear auth state.
-      // The ProtectedRoute component will see no token and redirect to /login.
+      // Skip hard-redirect for the refresh endpoint — a 401 there just means
+      // "no valid session", which is handled by the AuthProvider startup check.
+      const isRefreshCall = (error.config as { url?: string })?.url?.includes('/api/auth/refresh')
       useAuthStore.getState().clearAuth()
 
-      // Only redirect if we're not already on the login page
-      if (window.location.pathname !== '/login') {
-        window.location.href = '/login'
+      if (!isRefreshCall && window.location.pathname !== '/') {
+        window.location.href = '/'
       }
     }
 

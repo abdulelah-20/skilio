@@ -47,7 +47,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   token: null,
-  isLoading: true,
+  isLoading: true,  // stays true until the startup refresh check completes
 
   setAuth: (user, token) =>
     set({ user, token, isLoading: false }),

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { authApi } from '@/api/auth'
 import { useAuthStore } from '@/store/authStore'
 import { getApiErrorMessage } from '@/api/client'
-import type { LoginCredentials, RegisterPayload } from '@/types'
+import type { ForgotPasswordPayload, LoginCredentials, RegisterPayload, ResetPasswordPayload } from '@/types'
 
 // ── useLogin ──────────────────────────────────────────────────────────────────
 
@@ -44,6 +44,30 @@ export function useRegister() {
   })
 }
 
+// ── useForgotPassword ────────────────────────────────────────────────────────
+
+export function useForgotPassword() {
+  return useMutation({
+    mutationFn: (payload: ForgotPasswordPayload) => authApi.forgotPassword(payload),
+  })
+}
+
+// ── useResetPassword ─────────────────────────────────────────────────────────
+
+export function useResetPassword() {
+  const navigate = useNavigate()
+
+  return useMutation({
+    mutationFn: (payload: ResetPasswordPayload) => authApi.resetPassword(payload),
+    onSuccess: () => {
+      navigate('/login', {
+        replace: true,
+        state: { passwordReset: true },
+      })
+    },
+  })
+}
+
 // ── useLogout ─────────────────────────────────────────────────────────────────
 
 export function useLogout() {
@@ -53,8 +77,8 @@ export function useLogout() {
 
   return () => {
     clearAuth()
-    queryClient.clear()
-    navigate('/login', { replace: true })
+    queryClient.removeQueries()
+    navigate('/', { replace: true })
   }
 }
 
