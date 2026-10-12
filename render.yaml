@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: skilio-backend
+    env: docker
+    dockerfilePath: skilio-backend-final/skilio-backend-final/skilio-backend/Dockerfile
+    dockerContext: skilio-backend-final/skilio-backend-final/skilio-backend
+    plan: free
+    envVars:
+      - key: SECRET_KEY
+        value: skilio-hackathon-secret-key-change-in-production-long-enough-32chars
+      - key: DEBUG
+        value: "false"
+      - key: ALLOWED_ORIGINS
+        value: https://skilio-frontend.vercel.app
