@@ -39,3 +39,6 @@ from app.models.badge import Badge, BadgeAward, ModuleBadge, BadgeTriggerType  #
 
 # 8. RefreshToken
 from app.models.token import RefreshToken  # noqa: F401
+
+# 9. Password reset tokens
+from app.models.password_reset import PasswordResetToken  # noqa: F401

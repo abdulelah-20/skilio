@@ -1,0 +1,33 @@
+<svg width="900" height="680" viewBox="0 0 900 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="680" rx="48" fill="#07111f"/>
+  <circle cx="723" cy="110" r="78" fill="#FACC15"/>
+  <circle cx="723" cy="110" r="104" fill="#FACC15" opacity=".16"/>
+  <path d="M0 492C123 417 199 441 318 482C459 531 551 523 680 468C779 426 842 427 900 456V680H0V492Z" fill="#0F766E"/>
+  <path d="M0 555C142 486 246 505 366 546C505 594 620 573 740 527C809 501 860 500 900 516V680H0V555Z" fill="#134E4A"/>
+  <rect x="88" y="82" width="308" height="170" rx="26" fill="#111827" stroke="#2DD4BF" stroke-width="4"/>
+  <text x="122" y="133" fill="#99F6E4" font-family="Arial" font-size="20" font-weight="700">MISSION</text>
+  <text x="122" y="177" fill="white" font-family="Arial" font-size="34" font-weight="800">Forest Shortcut</text>
+  <text x="122" y="218" fill="#CBD5E1" font-family="Arial" font-size="22">Stay with the safe path.</text>
+  <circle cx="362" cy="432" r="88" fill="#8B5CF6"/>
+  <circle cx="362" cy="360" r="56" fill="#F8C8A6"/>
+  <path d="M306 360C320 306 404 304 420 360C389 335 343 335 306 360Z" fill="#3B1D10"/>
+  <circle cx="343" cy="360" r="6" fill="#1F2937"/>
+  <circle cx="383" cy="360" r="6" fill="#1F2937"/>
+  <path d="M344 386C360 400 379 399 393 386" stroke="#7C2D12" stroke-width="6" stroke-linecap="round"/>
+  <path d="M274 520C291 460 317 430 362 430C407 430 434 460 452 520" fill="#2563EB"/>
+  <rect x="276" y="506" width="172" height="72" rx="28" fill="#1D4ED8"/>
+  <circle cx="572" cy="422" r="82" fill="#14B8A6"/>
+  <circle cx="572" cy="351" r="54" fill="#F8C8A6"/>
+  <path d="M522 354C530 304 607 299 625 351C591 333 556 334 522 354Z" fill="#4A2512"/>
+  <circle cx="554" cy="352" r="6" fill="#1F2937"/>
+  <circle cx="590" cy="352" r="6" fill="#1F2937"/>
+  <path d="M556 378C568 388 585 388 596 378" stroke="#7C2D12" stroke-width="6" stroke-linecap="round"/>
+  <path d="M493 522C514 459 535 430 572 430C612 430 639 461 656 522" fill="#10B981"/>
+  <rect x="493" y="504" width="164" height="74" rx="28" fill="#059669"/>
+  <rect x="535" y="154" width="248" height="140" rx="28" fill="#F8FAFC"/>
+  <text x="565" y="199" fill="#0F766E" font-family="Arial" font-size="23" font-weight="800">Safe choice</text>
+  <text x="565" y="237" fill="#102033" font-family="Arial" font-size="25" font-weight="800">Ask for help</text>
+  <text x="565" y="270" fill="#64748B" font-family="Arial" font-size="20">+65 XP earned</text>
+  <path d="M122 410C156 377 199 377 234 410" stroke="#99F6E4" stroke-width="16" stroke-linecap="round"/>
+  <path d="M676 374C710 342 753 342 788 374" stroke="#99F6E4" stroke-width="16" stroke-linecap="round"/>
+</svg>

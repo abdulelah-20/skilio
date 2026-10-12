@@ -33,6 +33,8 @@ class User(Base, TimestampMixin):
 
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 
+    is_admin: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
     # ── Relationships ─────────────────────────────────────────────────────────
     children: Mapped[list["Child"]] = relationship(  # type: ignore[name-defined]
         "Child",

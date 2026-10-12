@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1e0a4e"/>
+      <stop offset="100%" stop-color="#0a0520"/>
+    </radialGradient>
+    <linearGradient id="selectedCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d1b69"/>
+      <stop offset="100%" stop-color="#1a0a3e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#f59e0b" flood-opacity="0.7"/>
+    </filter>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Stars -->
+  <g fill="white" opacity="0.4">
+    <circle cx="50" cy="80" r="1.5"/><circle cx="200" cy="50" r="1"/><circle cx="400" cy="100" r="2"/>
+    <circle cx="650" cy="40" r="1.5"/><circle cx="900" cy="70" r="1"/><circle cx="1150" cy="55" r="2"/>
+    <circle cx="1400" cy="90" r="1.5"/><circle cx="1550" cy="45" r="1"/>
+    <circle cx="100" cy="830" r="1.5"/><circle cx="350" cy="860" r="1"/><circle cx="1300" cy="840" r="2"/>
+  </g>
+
+  <!-- App Chrome: Top Bar -->
+  <rect x="50" y="30" width="1500" height="840" rx="20" fill="#12082a" stroke="#3b1f6e" stroke-width="2"/>
+  <!-- Top navigation bar -->
+  <rect x="50" y="30" width="1500" height="64" rx="20" fill="#1a0a3e"/>
+  <rect x="50" y="74" width="1500" height="20" fill="#1a0a3e"/>
+  <!-- Back arrow -->
+  <text x="95" y="72" font-size="28" fill="#c4b5fd">←</text>
+  <!-- App title bar -->
+  <text x="800" y="72" text-anchor="middle" font-size="26" font-weight="700" fill="#e2d9f3">🦸 Build Your Hero</text>
+  <!-- XP indicator -->
+  <rect x="1430" y="45" width="100" height="30" rx="15" fill="#4c1d95"/>
+  <text x="1480" y="66" text-anchor="middle" font-size="14" fill="#fde68a">⭐ 0 XP</text>
+
+  <!-- Heading -->
+  <text x="800" y="160" text-anchor="middle" font-size="44" font-weight="900" fill="#f0abfc">Who are you?</text>
+  <text x="800" y="198" text-anchor="middle" font-size="20" fill="#8b5cf6">Choose your hero — they'll guide you through every adventure</text>
+
+  <!-- ===== Hero Cards Row 1 ===== -->
+
+  <!-- Card 1: Nova (SELECTED) -->
+  <rect x="80" y="230" width="310" height="320" rx="22" fill="url(#selectedCard)" stroke="#f59e0b" stroke-width="3" filter="url(#glow)"/>
+  <!-- Gold checkmark -->
+  <circle cx="360" cy="250" r="20" fill="#f59e0b"/>
+  <text x="360" y="257" text-anchor="middle" font-size="18" fill="white">✓</text>
+  <!-- SELECTED badge -->
+  <rect x="145" y="236" width="100" height="26" rx="13" fill="#f59e0b"/>
+  <text x="195" y="254" text-anchor="middle" font-size="13" font-weight="700" fill="#1a0a3e">SELECTED</text>
+  <!-- Avatar -->
+  <circle cx="235" cy="360" r="70" fill="#2d1b69" stroke="#f59e0b" stroke-width="2"/>
+  <text x="235" y="382" text-anchor="middle" font-size="72">🚀</text>
+  <!-- Name -->
+  <text x="235" y="466" text-anchor="middle" font-size="26" font-weight="800" fill="#fde68a">Nova</text>
+  <text x="235" y="494" text-anchor="middle" font-size="16" fill="#a78bfa">Space Explorer</text>
+  <!-- Stars -->
+  <text x="235" y="525" text-anchor="middle" font-size="18" fill="#f59e0b">★★★★☆</text>
+
+  <!-- Card 2: Marina -->
+  <rect x="420" y="230" width="310" height="320" rx="22" fill="#1a1040" stroke="#374151" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <circle cx="575" cy="360" r="70" fill="#1e3a5f"/>
+  <text x="575" y="382" text-anchor="middle" font-size="72">🐬</text>
+  <text x="575" y="466" text-anchor="middle" font-size="26" font-weight="800" fill="#e2d9f3">Marina</text>
+  <text x="575" y="494" text-anchor="middle" font-size="16" fill="#6b7280">Sea Guardian</text>
+  <text x="575" y="525" text-anchor="middle" font-size="18" fill="#374151">★★★★☆</text>
+
+  <!-- Card 3: Leaf -->
+  <rect x="760" y="230" width="310" height="320" rx="22" fill="#1a1040" stroke="#374151" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <circle cx="915" cy="360" r="70" fill="#14532d"/>
+  <text x="915" y="382" text-anchor="middle" font-size="72">🌿</text>
+  <text x="915" y="466" text-anchor="middle" font-size="26" font-weight="800" fill="#e2d9f3">Leaf</text>
+  <text x="915" y="494" text-anchor="middle" font-size="16" fill="#6b7280">Forest Sprite</text>
+  <text x="915" y="525" text-anchor="middle" font-size="18" fill="#374151">★★★☆☆</text>
+
+  <!-- Card 4: Blaze -->
+  <rect x="1100" y="230" width="310" height="320" rx="22" fill="#1a1040" stroke="#374151" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <circle cx="1255" cy="360" r="70" fill="#7c2d12"/>
+  <text x="1255" y="382" text-anchor="middle" font-size="72">🔥</text>
+  <text x="1255" y="466" text-anchor="middle" font-size="26" font-weight="800" fill="#e2d9f3">Blaze</text>
+  <text x="1255" y="494" text-anchor="middle" font-size="16" fill="#6b7280">Hero in Training</text>
+  <text x="1255" y="525" text-anchor="middle" font-size="18" fill="#374151">★★★☆☆</text>
+
+  <!-- ===== Customisation Panel ===== -->
+  <rect x="80" y="580" width="1440" height="245" rx="20" fill="#1e1040" stroke="#4c1d95" stroke-width="1.5"/>
+  <text x="118" y="618" font-size="20" font-weight="700" fill="#f0abfc">✨ Make it yours</text>
+
+  <!-- Colour picker -->
+  <text x="118" y="655" font-size="16" fill="#c4b5fd">Hero Colour</text>
+  <circle cx="145" cy="685" r="20" fill="#7c3aed" stroke="#a78bfa" stroke-width="2.5"/>
+  <circle cx="195" cy="685" r="20" fill="#06b6d4"/>
+  <circle cx="245" cy="685" r="20" fill="#10b981"/>
+  <circle cx="295" cy="685" r="20" fill="#f59e0b"/>
+  <circle cx="345" cy="685" r="20" fill="#ec4899"/>
+  <circle cx="395" cy="685" r="20" fill="#ef4444"/>
+
+  <!-- Name input -->
+  <text x="118" y="730" font-size="16" fill="#c4b5fd">Hero Name</text>
+  <rect x="118" y="742" width="280" height="50" rx="12" fill="#0f0a2e" stroke="#7c3aed" stroke-width="2"/>
+  <text x="258" y="773" text-anchor="middle" font-size="18" fill="#e2d9f3">Nova the Brave</text>
+  <line x1="310" y1="753" x2="310" y2="782" stroke="#7c3aed" stroke-width="2"/>
+
+  <!-- Personality -->
+  <text x="470" y="618" font-size="16" fill="#c4b5fd">Personality</text>
+  <rect x="470" y="628" width="110" height="34" rx="17" fill="#4c1d95" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="525" y="650" text-anchor="middle" font-size="14" fill="#a78bfa">Brave</text>
+  <rect x="592" y="628" width="110" height="34" rx="17" fill="#1a1040" stroke="#374151" stroke-width="1.5"/>
+  <text x="647" y="650" text-anchor="middle" font-size="14" fill="#6b7280">Curious</text>
+  <rect x="714" y="628" width="110" height="34" rx="17" fill="#1a1040" stroke="#374151" stroke-width="1.5"/>
+  <text x="769" y="650" text-anchor="middle" font-size="14" fill="#6b7280">Caring</text>
+
+  <!-- Hero preview -->
+  <rect x="960" y="590" width="180" height="200" rx="16" fill="#0f0a2e" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="1050" y="630" text-anchor="middle" font-size="14" fill="#a78bfa">Preview</text>
+  <text x="1050" y="710" text-anchor="middle" font-size="80">🚀</text>
+  <text x="1050" y="770" text-anchor="middle" font-size="14" fill="#fde68a">Nova the Brave</text>
+
+  <!-- Start button -->
+  <rect x="1170" y="620" width="330" height="70" rx="35" fill="#7c3aed" stroke="#a78bfa" stroke-width="2" filter="url(#cardShadow)"/>
+  <text x="1335" y="663" text-anchor="middle" font-size="24" font-weight="800" fill="white">🚀 Start my adventure!</text>
+</svg>

@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0a0e1a"/>
+    </linearGradient>
+    <linearGradient id="vercelBlock" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="railwayBlock" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="dbBlock" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f0a2e"/>
+    </linearGradient>
+    <linearGradient id="arrowLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="blockShadow">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrRight" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto">
+      <polygon points="0 0, 12 4.5, 0 9" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrDown" markerWidth="9" markerHeight="12" refX="4.5" refY="10" orient="auto">
+      <polygon points="0 0, 4.5 12, 9 0" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="800" y="50" text-anchor="middle" font-size="36" font-weight="800" fill="#e2e8f0">Deployment Architecture</text>
+  <line x1="300" y1="66" x2="1300" y2="66" stroke="#4c1d95" stroke-width="1.5"/>
+
+  <!-- ===== User / Browser ===== -->
+  <rect x="640" y="90" width="320" height="100" rx="18" fill="#1e293b" stroke="#4b5563" stroke-width="1.5" filter="url(#blockShadow)"/>
+  <text x="800" y="132" text-anchor="middle" font-size="42">🧑‍💻</text>
+  <text x="800" y="172" text-anchor="middle" font-size="18" font-weight="600" fill="#94a3b8">User Browser</text>
+
+  <!-- Arrow down to Vercel -->
+  <line x1="800" y1="192" x2="800" y2="238" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrDown)"/>
+  <rect x="726" y="198" width="148" height="26" rx="13" fill="#0f172a"/>
+  <text x="800" y="215" text-anchor="middle" font-size="13" fill="#a78bfa">HTTPS</text>
+
+  <!-- ===== Vercel Block ===== -->
+  <rect x="200" y="240" width="1200" height="260" rx="22" fill="url(#vercelBlock)" stroke="#475569" stroke-width="2" filter="url(#blockShadow)"/>
+  <!-- Vercel logo area -->
+  <rect x="200" y="240" width="1200" height="56" rx="22" fill="#1e293b"/>
+  <rect x="200" y="274" width="1200" height="22" fill="#1e293b"/>
+  <text x="260" y="276" font-size="24" font-weight="800" fill="#ffffff">▲ Vercel</text>
+  <text x="260" y="296" font-size="15" fill="#94a3b8">Frontend — React + Vite + TypeScript</text>
+  <rect x="1220" y="252" width="160" height="30" rx="15" fill="#1f2937" stroke="#4b5563" stroke-width="1"/>
+  <text x="1300" y="272" text-anchor="middle" font-size="14" fill="#9ca3af">Global CDN · HTTPS</text>
+
+  <!-- Vercel internals -->
+  <text x="240" y="344" font-size="15" font-weight="700" fill="#e2e8f0">Static build (npm run build → dist/)</text>
+  <!-- SPA routing pill -->
+  <rect x="240" y="356" width="220" height="30" rx="15" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="350" y="376" text-anchor="middle" font-size="13" fill="#94a3b8">SPA rewrite: /* → /index.html</text>
+  <!-- Security headers pill -->
+  <rect x="474" y="356" width="230" height="30" rx="15" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="589" y="376" text-anchor="middle" font-size="13" fill="#94a3b8">Security headers (vercel.json)</text>
+  <!-- CSP pill -->
+  <rect x="718" y="356" width="160" height="30" rx="15" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="798" y="376" text-anchor="middle" font-size="13" fill="#94a3b8">CSP · HSTS · DENY</text>
+
+  <!-- Env vars on Vercel -->
+  <text x="240" y="415" font-size="14" font-weight="600" fill="#e2e8f0">Environment Variable:</text>
+  <rect x="240" y="424" width="620" height="56" rx="12" fill="#0d1117" stroke="#374151" stroke-width="1"/>
+  <text x="260" y="448" font-size="13" fill="#fde68a" font-family="'Courier New', monospace">VITE_API_URL</text>
+  <text x="370" y="448" font-size="13" fill="#6b7280" font-family="'Courier New', monospace">=</text>
+  <text x="386" y="448" font-size="13" fill="#4ade80" font-family="'Courier New', monospace">https://your-backend.up.railway.app</text>
+  <text x="260" y="468" font-size="12" fill="#4b5563" font-family="'Courier New', monospace">// Injected at build time via import.meta.env.VITE_API_URL</text>
+
+  <!-- CI/CD auto-deploy note -->
+  <rect x="916" y="424" width="460" height="56" rx="12" fill="#0d1117" stroke="#374151" stroke-width="1"/>
+  <text x="936" y="448" font-size="13" fill="#7dd3fc">🚀 Auto-deploy:</text>
+  <text x="1048" y="448" font-size="13" fill="#94a3b8">push to main → Vercel builds + deploys</text>
+  <text x="936" y="468" font-size="13" fill="#7dd3fc">🔄 Preview URLs:</text>
+  <text x="1054" y="468" font-size="13" fill="#94a3b8">per-PR preview deployments</text>
+
+  <!-- Arrow Vercel → Railway (HTTP label) -->
+  <line x1="800" y1="502" x2="800" y2="548" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrDown)"/>
+  <rect x="686" y="508" width="228" height="26" rx="13" fill="#0f172a"/>
+  <text x="800" y="525" text-anchor="middle" font-size="13" fill="#a78bfa">HTTPS · /api/* · Axios</text>
+
+  <!-- ===== Railway Backend Block ===== -->
+  <rect x="200" y="550" width="1200" height="230" rx="22" fill="url(#railwayBlock)" stroke="#059669" stroke-width="2" filter="url(#blockShadow)"/>
+  <rect x="200" y="550" width="1200" height="56" rx="22" fill="#064e3b"/>
+  <rect x="200" y="584" width="1200" height="22" fill="#064e3b"/>
+  <text x="260" y="584" font-size="24" font-weight="800" fill="#ffffff">🚂 Railway</text>
+  <text x="260" y="604" font-size="15" fill="#6ee7b7">Backend — FastAPI + Python 3.11 (Dockerfile)</text>
+  <rect x="1220" y="562" width="160" height="30" rx="15" fill="#022c22" stroke="#059669" stroke-width="1"/>
+  <text x="1300" y="582" text-anchor="middle" font-size="14" fill="#4ade80">Auto-restart ✓</text>
+
+  <!-- Railway internals -->
+  <text x="240" y="644" font-size="14" font-weight="600" fill="#e2e8f0">Service:  FastAPI → uvicorn  |  Release command:  alembic upgrade head &amp;&amp; scripts/seed.py</text>
+
+  <!-- Env vars -->
+  <rect x="240" y="658" width="1140" height="106" rx="12" fill="#0d1117" stroke="#374151" stroke-width="1"/>
+  <text x="260" y="680" font-size="13" fill="#fde68a" font-family="'Courier New', monospace">DATABASE_URL</text>
+  <text x="380" y="680" font-size="13" fill="#6b7280" font-family="'Courier New', monospace">=</text>
+  <text x="396" y="680" font-size="13" fill="#4ade80" font-family="'Courier New', monospace">postgresql://user:pass@hostname:5432/dbname  ← auto-injected from Railway PostgreSQL</text>
+  <text x="260" y="702" font-size="13" fill="#fde68a" font-family="'Courier New', monospace">SECRET_KEY</text>
+  <text x="360" y="702" font-size="13" fill="#6b7280" font-family="'Courier New', monospace">=</text>
+  <text x="376" y="702" font-size="13" fill="#4ade80" font-family="'Courier New', monospace">&lt;64-char hex string&gt;  ← generated with  python -c "import secrets; print(secrets.token_hex(32))"</text>
+  <text x="260" y="724" font-size="13" fill="#fde68a" font-family="'Courier New', monospace">ALLOWED_ORIGINS</text>
+  <text x="396" y="724" font-size="13" fill="#6b7280" font-family="'Courier New', monospace">=</text>
+  <text x="412" y="724" font-size="13" fill="#4ade80" font-family="'Courier New', monospace">https://your-app.vercel.app</text>
+  <text x="260" y="746" font-size="13" fill="#fde68a" font-family="'Courier New', monospace">DEBUG</text>
+  <text x="318" y="746" font-size="13" fill="#6b7280" font-family="'Courier New', monospace">=</text>
+  <text x="334" y="746" font-size="13" fill="#4ade80" font-family="'Courier New', monospace">false</text>
+  <text x="450" y="746" font-size="13" fill="#6b7280" font-family="'Courier New', monospace">ACCESS_TOKEN_EXPIRE_MINUTES=30</text>
+  <text x="750" y="746" font-size="13" fill="#6b7280" font-family="'Courier New', monospace">REFRESH_TOKEN_EXPIRE_DAYS=7</text>
+
+  <!-- Arrow Railway → DB -->
+  <line x1="1402" y1="665" x2="1462" y2="665" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrRight)"/>
+
+  <!-- ===== Railway PostgreSQL ===== -->
+  <rect x="1464" y="550" width="0" height="230" rx="16"/>
+  <!-- Inline DB block since it's beside Railway -->
+  <!-- Actually let's put it below -->
+
+  <!-- Arrow down to PostgreSQL -->
+  <line x1="800" y1="782" x2="800" y2="828" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrDown)"/>
+  <rect x="700" y="788" width="200" height="26" rx="13" fill="#0f172a"/>
+  <text x="800" y="805" text-anchor="middle" font-size="13" fill="#a78bfa">DATABASE_URL</text>
+
+  <!-- ===== PostgreSQL DB Block ===== -->
+  <rect x="400" y="830" width="800" height="58" rx="14" fill="url(#dbBlock)" stroke="#818cf8" stroke-width="2" filter="url(#blockShadow)"/>
+  <text x="800" y="865" text-anchor="middle" font-size="22" font-weight="700" fill="#c7d2fe">🐘  Railway PostgreSQL  ·  Auto-injected DATABASE_URL  ·  Alembic migrations</text>
+</svg>

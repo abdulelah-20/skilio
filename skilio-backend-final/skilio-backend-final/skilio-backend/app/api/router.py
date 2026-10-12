@@ -16,6 +16,7 @@ from app.api.modules   import router as modules_router
 from app.api.lessons   import router as lessons_router
 from app.api.scenarios import router as scenarios_router
 from app.api.badges    import router as badges_router
+from app.api.admin     import router as admin_router
 
 api_router = APIRouter(prefix="/api")
 
@@ -26,3 +27,4 @@ api_router.include_router(modules_router,   prefix="/modules",   tags=["modules"
 api_router.include_router(lessons_router,   prefix="/lessons",   tags=["lessons"])
 api_router.include_router(scenarios_router, prefix="/scenarios", tags=["scenarios"])
 api_router.include_router(badges_router,    prefix="/badges",    tags=["badges"])
+api_router.include_router(admin_router,     prefix="/admin",     tags=["admin"])

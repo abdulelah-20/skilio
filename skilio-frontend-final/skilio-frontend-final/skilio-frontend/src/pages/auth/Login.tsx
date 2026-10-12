@@ -29,6 +29,7 @@ export function LoginPage() {
 
   // Did the user just register successfully?
   const justRegistered = location.state?.registered === true
+  const passwordReset = location.state?.passwordReset === true
 
   function onSubmit(values: FormValues) {
     login.mutate({ username: values.email, password: values.password })
@@ -100,6 +101,13 @@ export function LoginPage() {
             </div>
           )}
 
+          {passwordReset && (
+            <div className="mb-5 flex items-center gap-2.5 rounded-xl border border-primary-200 bg-primary-50 px-4 py-3 text-sm text-primary-700 animate-fade-in">
+              <span>✓</span>
+              <span>Password updated. Sign in with your new password.</span>
+            </div>
+          )}
+
           {/* API error */}
           {login.isError && (
             <ErrorMessage
@@ -138,6 +146,12 @@ export function LoginPage() {
                 <label htmlFor="password" className="label mb-0">
                   Password
                 </label>
+                <Link
+                  to="/forgot-password"
+                  className="text-xs font-bold text-primary-600 hover:text-primary-700 transition-colors"
+                >
+                  Forgot?
+                </Link>
               </div>
               <input
                 id="password"

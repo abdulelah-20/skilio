@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0a0e1a"/>
+    </linearGradient>
+    <linearGradient id="stepGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0c2a4a"/>
+    </linearGradient>
+    <linearGradient id="stepGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#13104a"/>
+    </linearGradient>
+    <linearGradient id="stepGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="stepGrad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <linearGradient id="stepGrad5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2d1060"/>
+    </linearGradient>
+    <linearGradient id="stepGrad6" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#134e4a"/>
+      <stop offset="100%" stop-color="#042f2e"/>
+    </linearGradient>
+    <filter id="boxShadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrRed" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="800" y="54" text-anchor="middle" font-size="38" font-weight="800" fill="#e2e8f0">Authentication &amp; Security Flow</text>
+  <line x1="280" y1="70" x2="1320" y2="70" stroke="#4c1d95" stroke-width="1.5"/>
+
+  <!-- ===== Happy path: top row ===== -->
+  <!-- Labels row -->
+  <text x="800" y="104" text-anchor="middle" font-size="16" fill="#64748b">Happy Path — Successful Login</text>
+
+  <!-- STEP 1: Parent Credentials -->
+  <rect x="50" y="120" width="210" height="170" rx="16" fill="url(#stepGrad1)" stroke="#3b82f6" stroke-width="2" filter="url(#boxShadow)"/>
+  <text x="155" y="158" text-anchor="middle" font-size="36">👩</text>
+  <text x="155" y="188" text-anchor="middle" font-size="16" font-weight="700" fill="#93c5fd">Parent</text>
+  <text x="155" y="210" text-anchor="middle" font-size="13" fill="#60a5fa">Credentials</text>
+  <line x1="70" y1="224" x2="240" y2="224" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="155" y="244" text-anchor="middle" font-size="12" fill="#475569">email + password</text>
+  <text x="155" y="262" text-anchor="middle" font-size="12" fill="#475569">POST /api/auth/login</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="262" y1="205" x2="322" y2="205" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- STEP 2: bcrypt verify -->
+  <rect x="324" y="120" width="210" height="170" rx="16" fill="url(#stepGrad2)" stroke="#818cf8" stroke-width="2" filter="url(#boxShadow)"/>
+  <text x="429" y="158" text-anchor="middle" font-size="36">🔑</text>
+  <text x="429" y="188" text-anchor="middle" font-size="16" font-weight="700" fill="#c7d2fe">bcrypt</text>
+  <text x="429" y="210" text-anchor="middle" font-size="13" fill="#a5b4fc">Verify</text>
+  <line x1="344" y1="224" x2="514" y2="224" stroke="#1e1b4b" stroke-width="1"/>
+  <text x="429" y="244" text-anchor="middle" font-size="12" fill="#475569">passlib.verify()</text>
+  <text x="429" y="262" text-anchor="middle" font-size="12" fill="#475569">timing-safe hash check</text>
+  <!-- bcrypt tag -->
+  <rect x="369" y="272" width="120" height="22" rx="11" fill="#312e81"/>
+  <text x="429" y="287" text-anchor="middle" font-size="12" fill="#a5b4fc">bcrypt · slow hash</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="536" y1="205" x2="596" y2="205" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- STEP 3: JWT Access Token -->
+  <rect x="598" y="120" width="210" height="170" rx="16" fill="url(#stepGrad3)" stroke="#10b981" stroke-width="2" filter="url(#boxShadow)"/>
+  <text x="703" y="158" text-anchor="middle" font-size="36">🎫</text>
+  <text x="703" y="188" text-anchor="middle" font-size="16" font-weight="700" fill="#6ee7b7">Access Token</text>
+  <text x="703" y="210" text-anchor="middle" font-size="13" fill="#4ade80">JWT HS256</text>
+  <line x1="618" y1="224" x2="788" y2="224" stroke="#064e3b" stroke-width="1"/>
+  <text x="703" y="244" text-anchor="middle" font-size="12" fill="#475569">30-min expiry</text>
+  <text x="703" y="262" text-anchor="middle" font-size="12" fill="#475569">Zustand memory only</text>
+  <rect x="623" y="272" width="160" height="22" rx="11" fill="#064e3b"/>
+  <text x="703" y="287" text-anchor="middle" font-size="12" fill="#4ade80">never localStorage</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="810" y1="205" x2="870" y2="205" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- STEP 4: httpOnly Refresh Cookie -->
+  <rect x="872" y="120" width="210" height="170" rx="16" fill="url(#stepGrad4)" stroke="#f97316" stroke-width="2" filter="url(#boxShadow)"/>
+  <text x="977" y="158" text-anchor="middle" font-size="36">🍪</text>
+  <text x="977" y="188" text-anchor="middle" font-size="16" font-weight="700" fill="#fed7aa">Refresh Token</text>
+  <text x="977" y="210" text-anchor="middle" font-size="13" fill="#fb923c">httpOnly Cookie</text>
+  <line x1="892" y1="224" x2="1062" y2="224" stroke="#78350f" stroke-width="1"/>
+  <text x="977" y="244" text-anchor="middle" font-size="12" fill="#475569">7-day expiry · SHA-256</text>
+  <text x="977" y="262" text-anchor="middle" font-size="12" fill="#475569">hashed in DB</text>
+  <rect x="897" y="272" width="160" height="22" rx="11" fill="#78350f"/>
+  <text x="977" y="287" text-anchor="middle" font-size="12" fill="#fb923c">JS cannot read cookie</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="1084" y1="205" x2="1144" y2="205" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- STEP 5: Protected Routes -->
+  <rect x="1146" y="120" width="210" height="170" rx="16" fill="url(#stepGrad5)" stroke="#a855f7" stroke-width="2" filter="url(#boxShadow)"/>
+  <text x="1251" y="158" text-anchor="middle" font-size="36">🛡</text>
+  <text x="1251" y="188" text-anchor="middle" font-size="16" font-weight="700" fill="#d8b4fe">Protected</text>
+  <text x="1251" y="210" text-anchor="middle" font-size="13" fill="#c4b5fd">Routes</text>
+  <line x1="1166" y1="224" x2="1336" y2="224" stroke="#4c1d95" stroke-width="1"/>
+  <text x="1251" y="244" text-anchor="middle" font-size="12" fill="#475569">Bearer: access_token</text>
+  <text x="1251" y="262" text-anchor="middle" font-size="12" fill="#475569">Depends(get_current_user)</text>
+  <rect x="1171" y="272" width="160" height="22" rx="11" fill="#4c1d95"/>
+  <text x="1251" y="287" text-anchor="middle" font-size="12" fill="#c4b5fd">JWT decoded + verified</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="1358" y1="205" x2="1418" y2="205" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- STEP 6: Ownership Guard -->
+  <rect x="1420" y="120" width="140" height="170" rx="16" fill="url(#stepGrad6)" stroke="#14b8a6" stroke-width="2" filter="url(#boxShadow)"/>
+  <text x="1490" y="158" text-anchor="middle" font-size="36">🔒</text>
+  <text x="1490" y="188" text-anchor="middle" font-size="14" font-weight="700" fill="#99f6e4">Ownership</text>
+  <text x="1490" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#99f6e4">Guard</text>
+  <line x1="1430" y1="222" x2="1550" y2="222" stroke="#134e4a" stroke-width="1"/>
+  <text x="1490" y="242" text-anchor="middle" font-size="11" fill="#475569">child.parent_id</text>
+  <text x="1490" y="260" text-anchor="middle" font-size="11" fill="#475569">== user.id</text>
+  <text x="1490" y="278" text-anchor="middle" font-size="11" fill="#475569">else 404</text>
+
+  <!-- ===== Token Rotation section ===== -->
+  <rect x="50" y="340" width="740" height="190" rx="18" fill="#111827" stroke="#f97316" stroke-width="2"/>
+  <text x="420" y="374" text-anchor="middle" font-size="18" font-weight="700" fill="#fed7aa">🔄 Token Rotation (POST /api/auth/refresh)</text>
+  <line x1="70" y1="384" x2="770" y2="384" stroke="#78350f" stroke-width="1"/>
+  <text x="90" y="410" font-size="15" fill="#94a3b8">1.</text>
+  <text x="115" y="410" font-size="15" fill="#e2e8f0">Client sends expired access token + refresh cookie to /api/auth/refresh</text>
+  <text x="90" y="438" font-size="15" fill="#94a3b8">2.</text>
+  <text x="115" y="438" font-size="15" fill="#e2e8f0">Backend SHA-256 hashes the cookie → looks up token in DB</text>
+  <text x="90" y="466" font-size="15" fill="#94a3b8">3.</text>
+  <text x="115" y="466" font-size="15" fill="#e2e8f0">If valid: mark old token revoked, issue new access + refresh pair atomically</text>
+  <text x="90" y="494" font-size="15" fill="#94a3b8">4.</text>
+  <text x="115" y="494" font-size="15" fill="#e2e8f0">If already revoked: wipe ALL tokens for that user immediately</text>
+  <rect x="590" y="498" width="190" height="26" rx="13" fill="#78350f" stroke="#f97316" stroke-width="1"/>
+  <text x="685" y="516" text-anchor="middle" font-size="13" fill="#fed7aa">Replay attack prevention</text>
+
+  <!-- ===== Reuse Detection section ===== -->
+  <rect x="810" y="340" width="740" height="190" rx="18" fill="#111827" stroke="#ef4444" stroke-width="2"/>
+  <text x="1180" y="374" text-anchor="middle" font-size="18" font-weight="700" fill="#fca5a5">🚨 Reuse Detection (Replay Attack)</text>
+  <line x1="830" y1="384" x2="1530" y2="384" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="850" y="410" font-size="15" fill="#94a3b8">1.</text>
+  <text x="875" y="410" font-size="15" fill="#e2e8f0">Attacker replays a previously-used refresh token</text>
+  <text x="850" y="438" font-size="15" fill="#94a3b8">2.</text>
+  <text x="875" y="438" font-size="15" fill="#e2e8f0">Token hash found in DB but is_revoked = true</text>
+  <text x="850" y="466" font-size="15" fill="#ef4444" font-weight="600">3.  Skilio wipes ALL refresh tokens for that user account</text>
+  <text x="850" y="494" font-size="15" fill="#e2e8f0">4.  Forces re-login on all devices — attack contained</text>
+  <rect x="1340" y="498" width="190" height="26" rx="13" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+  <text x="1435" y="516" text-anchor="middle" font-size="13" fill="#fca5a5">Returns 401 Unauthorized</text>
+
+  <!-- ===== Rate Limiting section ===== -->
+  <rect x="50" y="558" width="480" height="150" rx="18" fill="#111827" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="290" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#fde68a">⏱ Rate Limiting</text>
+  <line x1="70" y1="600" x2="510" y2="600" stroke="#78350f" stroke-width="1"/>
+  <text x="90" y="626" font-size="14" fill="#e2e8f0">Login:  10 requests / minute / IP</text>
+  <text x="90" y="652" font-size="14" fill="#e2e8f0">Register:  5 requests / minute / IP</text>
+  <text x="90" y="678" font-size="14" fill="#94a3b8">In-memory sliding window · Returns 429</text>
+  <rect x="300" y="680" width="200" height="22" rx="11" fill="#78350f"/>
+  <text x="400" y="695" text-anchor="middle" font-size="12" fill="#fbbf24">Retry-After header included</text>
+
+  <!-- ===== Password Security section ===== -->
+  <rect x="550" y="558" width="480" height="150" rx="18" fill="#111827" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="790" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#c7d2fe">🔐 Password Security</text>
+  <line x1="570" y1="600" x2="1010" y2="600" stroke="#312e81" stroke-width="1"/>
+  <text x="590" y="626" font-size="14" fill="#e2e8f0">bcrypt via passlib · intentionally slow</text>
+  <text x="590" y="652" font-size="14" fill="#e2e8f0">Dummy verify on unknown email (timing-safe)</text>
+  <text x="590" y="678" font-size="14" fill="#94a3b8">Prevents user enumeration via timing</text>
+  <rect x="730" y="680" width="240" height="22" rx="11" fill="#312e81"/>
+  <text x="850" y="695" text-anchor="middle" font-size="12" fill="#a5b4fc">min 8 chars · upper · digit required</text>
+
+  <!-- ===== Input Validation section ===== -->
+  <rect x="1050" y="558" width="500" height="150" rx="18" fill="#111827" stroke="#10b981" stroke-width="1.5"/>
+  <text x="1300" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#6ee7b7">✅ Input Validation (Pydantic v2)</text>
+  <line x1="1070" y1="600" x2="1530" y2="600" stroke="#064e3b" stroke-width="1"/>
+  <text x="1090" y="626" font-size="14" fill="#e2e8f0">Email: RFC regex · password: complexity rules</text>
+  <text x="1090" y="652" font-size="14" fill="#e2e8f0">Age: 4–17 · name length limits</text>
+  <text x="1090" y="678" font-size="14" fill="#94a3b8">Text fields: blocks &lt; &gt; " ' % ; ( ) &amp;</text>
+  <rect x="1230" y="680" width="290" height="22" rx="11" fill="#064e3b"/>
+  <text x="1375" y="695" text-anchor="middle" font-size="12" fill="#4ade80">max 1 MB request size · 413 if exceeded</text>
+
+  <!-- Summary bar -->
+  <rect x="50" y="738" width="1500" height="108" rx="14" fill="#0d1117" stroke="#1e293b" stroke-width="1"/>
+  <text x="800" y="770" text-anchor="middle" font-size="17" font-weight="700" fill="#e2e8f0">Security Layers Summary</text>
+  <g font-size="14" text-anchor="middle">
+    <rect x="70" y="782" width="130" height="32" rx="8" fill="#064e3b" stroke="#4ade80" stroke-width="1"/>
+    <text x="135" y="802" fill="#4ade80">bcrypt</text>
+    <rect x="212" y="782" width="120" height="32" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+    <text x="272" y="802" fill="#a5b4fc">JWT HS256</text>
+    <rect x="344" y="782" width="155" height="32" rx="8" fill="#78350f" stroke="#f97316" stroke-width="1"/>
+    <text x="421" y="802" fill="#fb923c">httpOnly cookie</text>
+    <rect x="511" y="782" width="160" height="32" rx="8" fill="#064e3b" stroke="#4ade80" stroke-width="1"/>
+    <text x="591" y="802" fill="#4ade80">token rotation</text>
+    <rect x="683" y="782" width="170" height="32" rx="8" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+    <text x="768" y="802" fill="#fca5a5">reuse detection</text>
+    <rect x="865" y="782" width="165" height="32" rx="8" fill="#134e4a" stroke="#14b8a6" stroke-width="1"/>
+    <text x="947" y="802" fill="#99f6e4">ownership guard</text>
+    <rect x="1042" y="782" width="140" height="32" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1"/>
+    <text x="1112" y="802" fill="#fde68a">rate limiting</text>
+    <rect x="1194" y="782" width="155" height="32" rx="8" fill="#1e293b" stroke="#6b7280" stroke-width="1"/>
+    <text x="1271" y="802" fill="#9ca3af">Pydantic v2</text>
+    <rect x="1361" y="782" width="155" height="32" rx="8" fill="#1f2937" stroke="#6b7280" stroke-width="1"/>
+    <text x="1438" y="802" fill="#9ca3af">1 MB size limit</text>
+  </g>
+  <text x="800" y="836" text-anchor="middle" font-size="13" fill="#475569">All layers active in production · Zero security shortcuts</text>
+</svg>

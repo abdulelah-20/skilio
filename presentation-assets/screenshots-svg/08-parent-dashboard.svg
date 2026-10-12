@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="sidebar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a0f1e"/>
+      <stop offset="100%" stop-color="#0d1627"/>
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#162032"/>
+    </linearGradient>
+    <linearGradient id="xpGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="progressGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="progressBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- ===== Sidebar ===== -->
+  <rect x="0" y="0" width="240" height="900" fill="url(#sidebar)" stroke="#1e293b" stroke-width="1"/>
+  <!-- Logo -->
+  <text x="30" y="48" font-size="26" font-weight="900" fill="#a78bfa">SKILIO</text>
+  <text x="30" y="68" font-size="12" fill="#475569">Parent Dashboard</text>
+  <line x1="20" y1="82" x2="220" y2="82" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Nav items -->
+  <rect x="12" y="100" width="216" height="46" rx="10" fill="#1e1b4b"/>
+  <text x="42" y="130" font-size="18" fill="#7c3aed">📊</text>
+  <text x="72" y="130" font-size="16" font-weight="600" fill="#a78bfa">Dashboard</text>
+
+  <text x="42" y="185" font-size="18" fill="#475569">👦</text>
+  <text x="72" y="185" font-size="16" fill="#64748b">My Children</text>
+
+  <text x="42" y="230" font-size="18" fill="#475569">📈</text>
+  <text x="72" y="230" font-size="16" fill="#64748b">Progress</text>
+
+  <text x="42" y="275" font-size="18" fill="#475569">🏅</text>
+  <text x="72" y="275" font-size="16" fill="#64748b">Badges</text>
+
+  <text x="42" y="320" font-size="18" fill="#475569">📋</text>
+  <text x="72" y="320" font-size="16" fill="#64748b">Attempts</text>
+
+  <line x1="20" y1="340" x2="220" y2="340" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="42" y="375" font-size="18" fill="#475569">⚙️</text>
+  <text x="72" y="375" font-size="16" fill="#64748b">Settings</text>
+
+  <!-- User profile at bottom -->
+  <rect x="12" y="820" width="216" height="60" rx="10" fill="#1e293b"/>
+  <circle cx="46" cy="850" r="18" fill="#4c1d95" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="46" y="856" text-anchor="middle" font-size="16">👩</text>
+  <text x="75" y="844" font-size="14" font-weight="600" fill="#e2e8f0">Sarah Parent</text>
+  <text x="75" y="862" font-size="12" fill="#64748b">demo@skilio.com</text>
+
+  <!-- ===== Top header ===== -->
+  <rect x="240" y="0" width="1360" height="72" fill="#0d1117" stroke="#1e293b" stroke-width="1"/>
+  <text x="280" y="42" font-size="26" font-weight="700" fill="#e2e8f0">Welcome back, Sarah 👋</text>
+  <text x="280" y="62" font-size="14" fill="#64748b">Here's how your children are doing today</text>
+  <!-- Add child button -->
+  <rect x="1360" y="16" width="200" height="44" rx="10" fill="#7c3aed"/>
+  <text x="1460" y="43" text-anchor="middle" font-size="16" font-weight="600" fill="white">+ Add Child</text>
+
+  <!-- ===== Stats row ===== -->
+  <!-- Stat 1 -->
+  <rect x="260" y="90" width="280" height="100" rx="14" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" filter="url(#cardShadow)"/>
+  <text x="300" y="130" font-size="36">👦</text>
+  <text x="380" y="120" font-size="32" font-weight="800" fill="#e2e8f0">2</text>
+  <text x="380" y="148" font-size="13" fill="#64748b">Children</text>
+  <!-- Stat 2 -->
+  <rect x="560" y="90" width="280" height="100" rx="14" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" filter="url(#cardShadow)"/>
+  <text x="600" y="130" font-size="36">⭐</text>
+  <text x="680" y="120" font-size="32" font-weight="800" fill="#fde68a">575</text>
+  <text x="680" y="148" font-size="13" fill="#64748b">Total XP across children</text>
+  <!-- Stat 3 -->
+  <rect x="860" y="90" width="280" height="100" rx="14" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" filter="url(#cardShadow)"/>
+  <text x="900" y="130" font-size="36">🏅</text>
+  <text x="980" y="120" font-size="32" font-weight="800" fill="#f59e0b">3</text>
+  <text x="980" y="148" font-size="13" fill="#64748b">Badges earned</text>
+  <!-- Stat 4 -->
+  <rect x="1160" y="90" width="280" height="100" rx="14" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" filter="url(#cardShadow)"/>
+  <text x="1200" y="130" font-size="36">✅</text>
+  <text x="1280" y="120" font-size="32" font-weight="800" fill="#4ade80">5</text>
+  <text x="1280" y="148" font-size="13" fill="#64748b">Scenarios completed</text>
+
+  <!-- ===== Child Cards ===== -->
+  <text x="280" y="228" font-size="20" font-weight="700" fill="#e2e8f0">My Children</text>
+
+  <!-- Child Card 1: Emma -->
+  <rect x="260" y="248" width="570" height="380" rx="18" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" filter="url(#cardShadow)"/>
+  <!-- Card header -->
+  <rect x="260" y="248" width="570" height="72" rx="18" fill="#1e1b4b"/>
+  <rect x="260" y="290" width="570" height="30" fill="#1e1b4b"/>
+  <circle cx="310" cy="284" r="28" fill="#3730a3" stroke="#818cf8" stroke-width="2"/>
+  <text x="310" y="292" text-anchor="middle" font-size="26">👧</text>
+  <text x="360" y="274" font-size="20" font-weight="700" fill="#e2e8f0">Emma</text>
+  <text x="360" y="298" font-size="13" fill="#818cf8">Age 8 · Level 2</text>
+  <rect x="710" y="260" width="100" height="28" rx="14" fill="#4c1d95"/>
+  <text x="760" y="279" text-anchor="middle" font-size="13" fill="#c7d2fe">Active</text>
+  <!-- XP -->
+  <text x="290" y="360" font-size="14" fill="#94a3b8">Total XP</text>
+  <text x="290" y="390" font-size="32" font-weight="800" fill="#fde68a">⭐ 315</text>
+  <!-- Progress bars -->
+  <text x="290" y="430" font-size="13" fill="#94a3b8">🌌 Outer Space</text>
+  <rect x="290" y="440" width="500" height="12" rx="6" fill="#0f172a"/>
+  <rect x="290" y="440" width="167" height="12" rx="6" fill="url(#progressGreen)"/>
+  <text x="800" y="452" text-anchor="end" font-size="12" fill="#4ade80">33%</text>
+
+  <text x="290" y="474" font-size="13" fill="#94a3b8">🌊 The Deep Sea</text>
+  <rect x="290" y="484" width="500" height="12" rx="6" fill="#0f172a"/>
+  <text x="800" y="496" text-anchor="end" font-size="12" fill="#64748b">0%</text>
+
+  <text x="290" y="518" font-size="13" fill="#94a3b8">🌲 Enchanted Forest</text>
+  <rect x="290" y="528" width="500" height="12" rx="6" fill="#0f172a"/>
+  <text x="800" y="540" text-anchor="end" font-size="12" fill="#64748b">0%</text>
+
+  <!-- Badges -->
+  <text x="290" y="570" font-size="13" fill="#94a3b8">Badges</text>
+  <text x="290" y="600" font-size="32">🏅</text><text x="330" y="600" font-size="32">⭐</text><text x="370" y="600" font-size="32" fill="#374151" opacity="0.4">🏆</text>
+
+  <!-- Review button -->
+  <rect x="548" y="580" width="252" height="50" rx="12" fill="#7c3aed" stroke="#a78bfa" stroke-width="1"/>
+  <text x="674" y="611" text-anchor="middle" font-size="16" font-weight="600" fill="white">Review Child →</text>
+
+  <!-- Child Card 2: Liam -->
+  <rect x="860" y="248" width="570" height="380" rx="18" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="860" y="248" width="570" height="72" rx="18" fill="#0c2a1a"/>
+  <rect x="860" y="290" width="570" height="30" fill="#0c2a1a"/>
+  <circle cx="910" cy="284" r="28" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <text x="910" y="292" text-anchor="middle" font-size="26">👦</text>
+  <text x="960" y="274" font-size="20" font-weight="700" fill="#e2e8f0">Liam</text>
+  <text x="960" y="298" font-size="13" fill="#4ade80">Age 12 · Level 3</text>
+  <rect x="1310" y="260" width="100" height="28" rx="14" fill="#064e3b"/>
+  <text x="1360" y="279" text-anchor="middle" font-size="13" fill="#6ee7b7">Active</text>
+  <text x="890" y="360" font-size="14" fill="#94a3b8">Total XP</text>
+  <text x="890" y="390" font-size="32" font-weight="800" fill="#fde68a">⭐ 260</text>
+
+  <text x="890" y="430" font-size="13" fill="#94a3b8">🌌 Outer Space</text>
+  <rect x="890" y="440" width="500" height="12" rx="6" fill="#0f172a"/>
+  <rect x="890" y="440" width="250" height="12" rx="6" fill="url(#progressBlue)"/>
+  <text x="1400" y="452" text-anchor="end" font-size="12" fill="#3b82f6">50%</text>
+
+  <text x="890" y="474" font-size="13" fill="#94a3b8">🌊 The Deep Sea</text>
+  <rect x="890" y="484" width="500" height="12" rx="6" fill="#0f172a"/>
+  <rect x="890" y="484" width="83" height="12" rx="6" fill="url(#progressBlue)"/>
+  <text x="1400" y="496" text-anchor="end" font-size="12" fill="#3b82f6">17%</text>
+
+  <text x="890" y="518" font-size="13" fill="#94a3b8">🌲 Enchanted Forest</text>
+  <rect x="890" y="528" width="500" height="12" rx="6" fill="#0f172a"/>
+  <text x="1400" y="540" text-anchor="end" font-size="12" fill="#64748b">0%</text>
+
+  <text x="890" y="570" font-size="13" fill="#94a3b8">Badges</text>
+  <text x="890" y="600" font-size="32">🏅</text><text x="930" y="600" font-size="32" fill="#374151" opacity="0.4">⭐</text>
+
+  <rect x="1148" y="580" width="252" height="50" rx="12" fill="#1e293b" stroke="#374151" stroke-width="1"/>
+  <text x="1274" y="611" text-anchor="middle" font-size="16" font-weight="600" fill="#94a3b8">Review Child →</text>
+
+  <!-- ===== Recent Activity ===== -->
+  <text x="280" y="668" font-size="18" font-weight="700" fill="#e2e8f0">Recent Activity</text>
+  <rect x="260" y="682" width="1170" height="190" rx="14" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1"/>
+  <!-- Activity rows -->
+  <rect x="280" y="700" width="1130" height="46" rx="8" fill="#0f172a"/>
+  <text x="310" y="729" font-size="20">👧</text>
+  <text x="345" y="722" font-size="14" font-weight="600" fill="#e2e8f0">Emma</text>
+  <text x="345" y="742" font-size="13" fill="#64748b">Completed: Space Station Safety (Lesson 3)</text>
+  <text x="1380" y="722" text-anchor="end" font-size="13" fill="#4ade80">+75 XP</text>
+  <text x="1380" y="742" text-anchor="end" font-size="12" fill="#475569">2 minutes ago</text>
+
+  <rect x="280" y="754" width="1130" height="46" rx="8" fill="#0f172a" opacity="0.6"/>
+  <text x="310" y="783" font-size="20">👦</text>
+  <text x="345" y="776" font-size="14" font-weight="600" fill="#e2e8f0">Liam</text>
+  <text x="345" y="796" font-size="13" fill="#64748b">Earned badge: Space Hero 🏅</text>
+  <text x="1380" y="776" text-anchor="end" font-size="13" fill="#f59e0b">Badge</text>
+  <text x="1380" y="796" text-anchor="end" font-size="12" fill="#475569">1 hour ago</text>
+
+  <rect x="280" y="808" width="1130" height="46" rx="8" fill="#0f172a" opacity="0.4"/>
+  <text x="310" y="837" font-size="20">👦</text>
+  <text x="345" y="830" font-size="14" font-weight="600" fill="#e2e8f0">Liam</text>
+  <text x="345" y="850" font-size="13" fill="#64748b">Completed: Moon Mission (Lesson 2) — chose Option A</text>
+  <text x="1380" y="830" text-anchor="end" font-size="13" fill="#4ade80">+50 XP</text>
+  <text x="1380" y="850" text-anchor="end" font-size="12" fill="#475569">3 hours ago</text>
+</svg>

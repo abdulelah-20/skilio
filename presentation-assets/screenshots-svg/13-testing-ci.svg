@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="'Segoe UI', 'Courier New', monospace">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a0d14"/>
+    </linearGradient>
+    <linearGradient id="passGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#052e16"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glowGreen">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#4ade80" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="800" y="50" text-anchor="middle" font-size="36" font-weight="800" fill="#e2e8f0">Testing &amp; CI/CD</text>
+  <line x1="300" y1="66" x2="1300" y2="66" stroke="#1f2937" stroke-width="1.5"/>
+
+  <!-- ===== LEFT: GitHub Actions panel ===== -->
+  <!-- Panel chrome -->
+  <rect x="40" y="82" width="960" height="790" rx="16" fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+  <!-- Panel header -->
+  <rect x="40" y="82" width="960" height="54" rx="16" fill="#161b22"/>
+  <rect x="40" y="118" width="960" height="18" fill="#161b22"/>
+  <text x="76" y="116" font-size="22" fill="#e2e8f0" font-weight="700">⚡  Actions — Skilio CI</text>
+  <!-- Tabs -->
+  <rect x="76" y="128" width="140" height="28" rx="4" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+  <text x="146" y="147" text-anchor="middle" font-size="13" fill="#58a6ff">All workflows</text>
+  <rect x="228" y="128" width="120" height="28" rx="4" fill="#161b22"/>
+  <text x="288" y="147" text-anchor="middle" font-size="13" fill="#6e7681">Backend CI</text>
+  <rect x="360" y="128" width="130" height="28" rx="4" fill="#161b22"/>
+  <text x="425" y="147" text-anchor="middle" font-size="13" fill="#6e7681">Frontend CI</text>
+  <line x1="40" y1="158" x2="1000" y2="158" stroke="#21262d" stroke-width="1"/>
+
+  <!-- ===== Backend CI workflow ===== -->
+  <text x="76" y="192" font-size="15" font-weight="700" fill="#c9d1d9">Backend CI</text>
+  <rect x="930" y="178" width="60" height="24" rx="12" fill="#033a16" stroke="#238636" stroke-width="1"/>
+  <text x="960" y="195" text-anchor="middle" font-size="12" fill="#3fb950">● passing</text>
+
+  <!-- Workflow run item 1 -->
+  <rect x="56" y="204" width="928" height="58" rx="8" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+  <circle cx="80" cy="233" r="10" fill="#238636"/>
+  <text x="80" y="237" text-anchor="middle" font-size="12" fill="white">✓</text>
+  <text x="104" y="227" font-size="14" font-weight="600" fill="#e2e8f0">Final submission: Skilio life skills platform</text>
+  <text x="104" y="248" font-size="12" fill="#6e7681">push · master · 3ea666c · 2 minutes ago</text>
+  <text x="960" y="233" text-anchor="end" font-size="13" fill="#3fb950">✓ 1m 47s</text>
+
+  <!-- Workflow run item 2 -->
+  <rect x="56" y="270" width="928" height="58" rx="8" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+  <circle cx="80" cy="299" r="10" fill="#238636"/>
+  <text x="80" y="303" text-anchor="middle" font-size="12" fill="white">✓</text>
+  <text x="104" y="293" font-size="14" font-weight="600" fill="#8b949e">Fix: Add jti to refresh token payload</text>
+  <text x="104" y="314" font-size="12" fill="#6e7681">push · master · ab9c12f · 1 hour ago</text>
+  <text x="960" y="299" text-anchor="end" font-size="13" fill="#3fb950">✓ 1m 52s</text>
+
+  <!-- Expanded job details for latest run -->
+  <rect x="56" y="338" width="928" height="306" rx="8" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="80" y="364" font-size="14" font-weight="600" fill="#c9d1d9">Jobs — Latest Run</text>
+  <line x1="56" y1="374" x2="984" y2="374" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Job steps -->
+  <!-- Step 1 -->
+  <rect x="76" y="384" width="888" height="42" rx="6" fill="#161b22"/>
+  <text x="104" y="401" font-size="22" fill="#3fb950">✓</text>
+  <text x="136" y="401" font-size="14" fill="#c9d1d9" font-weight="600">Set up Python 3.11</text>
+  <text x="136" y="418" font-size="12" fill="#6e7681">actions/setup-python@v4  ·  Cache hit</text>
+  <text x="940" y="410" text-anchor="end" font-size="12" fill="#3fb950">3s</text>
+
+  <!-- Step 2 -->
+  <rect x="76" y="432" width="888" height="42" rx="6" fill="#161b22"/>
+  <text x="104" y="449" font-size="22" fill="#3fb950">✓</text>
+  <text x="136" y="449" font-size="14" fill="#c9d1d9" font-weight="600">Install dependencies</text>
+  <text x="136" y="466" font-size="12" fill="#6e7681">pip install -r requirements.txt  ·  42 packages installed</text>
+  <text x="940" y="458" text-anchor="end" font-size="12" fill="#3fb950">14s</text>
+
+  <!-- Step 3 -->
+  <rect x="76" y="480" width="888" height="42" rx="6" fill="#161b22"/>
+  <text x="104" y="497" font-size="22" fill="#3fb950">✓</text>
+  <text x="136" y="497" font-size="14" fill="#c9d1d9" font-weight="600">Run database migrations</text>
+  <text x="136" y="514" font-size="12" fill="#6e7681">python -m alembic upgrade head  ·  SQLite CI database</text>
+  <text x="940" y="506" text-anchor="end" font-size="12" fill="#3fb950">2s</text>
+
+  <!-- Step 4 -->
+  <rect x="76" y="528" width="888" height="42" rx="6" fill="#161b22"/>
+  <text x="104" y="545" font-size="22" fill="#3fb950">✓</text>
+  <text x="136" y="545" font-size="14" fill="#c9d1d9" font-weight="600">Seed demo data</text>
+  <text x="136" y="562" font-size="12" fill="#6e7681">python scripts/seed.py  ·  3 worlds · 6 lessons · 5 badges seeded</text>
+  <text x="940" y="554" text-anchor="end" font-size="12" fill="#3fb950">1s</text>
+
+  <!-- Step 5: pytest — HIGHLIGHTED -->
+  <rect x="76" y="576" width="888" height="58" rx="6" fill="url(#passGrad)" stroke="#238636" stroke-width="1.5" filter="url(#glowGreen)"/>
+  <text x="104" y="597" font-size="22" fill="#3fb950">✓</text>
+  <text x="136" y="597" font-size="14" font-weight="700" fill="#c9d1d9">Run pytest test suite</text>
+  <text x="136" y="616" font-size="13" fill="#3fb950">python -m pytest tests -v  ·  42 passed, 0 failed, 0 errors</text>
+  <text x="136" y="630" font-size="12" fill="#6e7681">test_auth.py: 19 tests · test_content.py: 23 tests</text>
+  <text x="940" y="614" text-anchor="end" font-size="12" fill="#3fb950">47s</text>
+
+  <!-- ===== Frontend CI ===== -->
+  <text x="76" y="672" font-size="15" font-weight="700" fill="#c9d1d9">Frontend CI</text>
+  <rect x="930" y="658" width="60" height="24" rx="12" fill="#033a16" stroke="#238636" stroke-width="1"/>
+  <text x="960" y="675" text-anchor="middle" font-size="12" fill="#3fb950">● passing</text>
+
+  <rect x="56" y="684" width="928" height="58" rx="8" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+  <circle cx="80" cy="713" r="10" fill="#238636"/>
+  <text x="80" y="717" text-anchor="middle" font-size="12" fill="white">✓</text>
+  <text x="104" y="707" font-size="14" font-weight="600" fill="#e2e8f0">Final submission: Skilio life skills platform</text>
+  <text x="104" y="728" font-size="12" fill="#6e7681">push · master · 3ea666c · 2 minutes ago</text>
+  <text x="960" y="713" text-anchor="end" font-size="13" fill="#3fb950">✓ 54s</text>
+
+  <!-- FE job steps brief -->
+  <rect x="56" y="750" width="928" height="108" rx="8" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="80" y="773" font-size="14" font-weight="600" fill="#c9d1d9">Jobs — Latest Run</text>
+  <line x1="56" y1="782" x2="984" y2="782" stroke="#21262d" stroke-width="1"/>
+  <text x="104" y="806" font-size="22" fill="#3fb950">✓</text>
+  <text x="136" y="806" font-size="14" fill="#c9d1d9">Set up Node.js 20  ·  npm install</text>
+  <text x="940" y="806" text-anchor="end" font-size="12" fill="#3fb950">18s</text>
+  <rect x="76" y="820" width="888" height="34" rx="6" fill="url(#passGrad)" stroke="#238636" stroke-width="1"/>
+  <text x="104" y="840" font-size="22" fill="#3fb950">✓</text>
+  <text x="136" y="840" font-size="14" font-weight="700" fill="#c9d1d9">npm run build (TypeScript compile + Vite bundle)  ·  dist/ created</text>
+  <text x="940" y="840" text-anchor="end" font-size="12" fill="#3fb950">36s</text>
+
+  <!-- ===== RIGHT: Test summary + coverage ===== -->
+  <!-- pytest output terminal -->
+  <rect x="1020" y="82" width="540" height="440" rx="16" fill="#0d1117" stroke="#21262d" stroke-width="1" filter="url(#shadow)"/>
+  <!-- Terminal title bar -->
+  <rect x="1020" y="82" width="540" height="36" rx="16" fill="#161b22"/>
+  <rect x="1020" y="100" width="540" height="18" fill="#161b22"/>
+  <circle cx="1048" cy="100" r="6" fill="#ef4444"/><circle cx="1068" cy="100" r="6" fill="#f59e0b"/><circle cx="1088" cy="100" r="6" fill="#22c55e"/>
+  <text x="1290" y="105" text-anchor="middle" font-size="13" fill="#6e7681">Terminal — pytest output</text>
+  <!-- Terminal content -->
+  <text x="1044" y="138" font-size="13" fill="#6e7681" font-family="'Courier New', monospace">$ python -m pytest tests -v</text>
+  <text x="1044" y="160" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">======================== test session starts ========================</text>
+  <text x="1044" y="178" font-size="12" fill="#c9d1d9" font-family="'Courier New', monospace">platform linux -- Python 3.11.x</text>
+  <text x="1044" y="196" font-size="12" fill="#c9d1d9" font-family="'Courier New', monospace">collected 42 items</text>
+  <text x="1044" y="218" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_auth.py::TestRegister::test_register_success PASSED</text>
+  <text x="1044" y="234" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_auth.py::TestRegister::test_duplicate_email PASSED</text>
+  <text x="1044" y="250" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_auth.py::TestLogin::test_login_success PASSED</text>
+  <text x="1044" y="266" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_auth.py::TestLogin::test_wrong_password PASSED</text>
+  <text x="1044" y="282" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_auth.py::TestMe::test_me_authenticated PASSED</text>
+  <text x="1044" y="298" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_auth.py::TestChildren::test_create_child PASSED</text>
+  <text x="1044" y="314" font-size="12" fill="#6e7681" font-family="'Courier New', monospace">... [19 auth tests] ...</text>
+  <text x="1044" y="330" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_content.py::TestModules::test_list PASSED</text>
+  <text x="1044" y="346" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_content.py::TestScenarios::test_start PASSED</text>
+  <text x="1044" y="362" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_content.py::TestScenarios::test_advance_choice PASSED</text>
+  <text x="1044" y="378" font-size="12" fill="#4ade80" font-family="'Courier New', monospace">tests/test_content.py::TestScenarios::test_complete PASSED</text>
+  <text x="1044" y="394" font-size="12" fill="#6e7681" font-family="'Courier New', monospace">... [23 content tests] ...</text>
+  <line x1="1040" y1="410" x2="1540" y2="410" stroke="#21262d" stroke-width="1"/>
+  <rect x="1040" y="422" width="500" height="82" rx="8" fill="url(#passGrad)" stroke="#238636" stroke-width="1.5" filter="url(#glowGreen)"/>
+  <text x="1290" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#4ade80" font-family="'Courier New', monospace">42 passed in 2.34s</text>
+  <text x="1290" y="474" text-anchor="middle" font-size="14" fill="#6ee7b7" font-family="'Courier New', monospace">0 failed  ·  0 errors  ·  0 warnings</text>
+  <text x="1290" y="494" text-anchor="middle" font-size="13" fill="#052e16" font-family="'Courier New', monospace">========================= PASSED =========================</text>
+
+  <!-- Test breakdown cards -->
+  <rect x="1020" y="542" width="540" height="330" rx="16" fill="#161b22" stroke="#21262d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="1060" y="572" font-size="16" font-weight="700" fill="#c9d1d9">Test Coverage Breakdown</text>
+  <line x1="1040" y1="584" x2="1540" y2="584" stroke="#21262d" stroke-width="1"/>
+
+  <!-- test_auth.py -->
+  <rect x="1040" y="596" width="500" height="120" rx="10" fill="#0d1117" stroke="#1f2937" stroke-width="1"/>
+  <text x="1060" y="618" font-size="14" font-weight="600" fill="#58a6ff">test_auth.py  ·  19 tests</text>
+  <text x="1060" y="640" font-size="13" fill="#6e7681">TestRegister (6)   TestLogin (4)   TestMe (3)</text>
+  <text x="1060" y="660" font-size="13" fill="#6e7681">TestChildren (5)   TestHealth (1)</text>
+  <text x="1060" y="680" font-size="13" fill="#94a3b8">Covers: auth, JWT, cookies, rate limiting, validation, ownership</text>
+  <rect x="1440" y="600" width="88" height="28" rx="14" fill="#033a16" stroke="#238636" stroke-width="1"/>
+  <text x="1484" y="619" text-anchor="middle" font-size="14" fill="#3fb950">19 / 19</text>
+
+  <!-- test_content.py -->
+  <rect x="1040" y="726" width="500" height="126" rx="10" fill="#0d1117" stroke="#1f2937" stroke-width="1"/>
+  <text x="1060" y="748" font-size="14" font-weight="600" fill="#58a6ff">test_content.py  ·  23 tests</text>
+  <text x="1060" y="770" font-size="13" fill="#6e7681">TestModules (4)   TestLessons (3)   TestScenarios (7)</text>
+  <text x="1060" y="790" font-size="13" fill="#6e7681">TestChildProgress (4)   TestChildManagement (5)</text>
+  <text x="1060" y="810" font-size="13" fill="#94a3b8">Covers: DAG engine, XP, badges, progress, soft-delete</text>
+  <rect x="1440" y="730" width="88" height="28" rx="14" fill="#033a16" stroke="#238636" stroke-width="1"/>
+  <text x="1484" y="749" text-anchor="middle" font-size="14" fill="#3fb950">23 / 23</text>
+
+  <!-- Grand total badge -->
+  <rect x="1060" y="858" width="460" height="38" rx="19" fill="url(#passGrad)" stroke="#4ade80" stroke-width="2" filter="url(#glowGreen)"/>
+  <text x="1290" y="882" text-anchor="middle" font-size="18" font-weight="800" fill="#4ade80">✓ 42 / 42 pytest tests passed  ·  Frontend build: PASS</text>
+</svg>

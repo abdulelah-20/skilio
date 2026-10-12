@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0a0e1a"/>
+    </linearGradient>
+    <filter id="entityShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="dagHighlight">
+      <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#a855f7" flood-opacity="0.6"/>
+    </filter>
+    <marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#64748b"/>
+    </marker>
+    <marker id="arrPurple" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#a855f7"/>
+    </marker>
+    <marker id="arrGold" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="800" y="50" text-anchor="middle" font-size="38" font-weight="800" fill="#e2e8f0">Data Model — 13 Entities</text>
+  <line x1="300" y1="66" x2="1300" y2="66" stroke="#4c1d95" stroke-width="1.5"/>
+
+  <!-- ===== Helper: entity box macro ===== -->
+  <!-- Using rect + text manually for each entity -->
+
+  <!-- USER -->
+  <rect x="60" y="100" width="190" height="90" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2" filter="url(#entityShadow)"/>
+  <rect x="60" y="100" width="190" height="32" rx="12" fill="#1e3a5f"/>
+  <rect x="60" y="120" width="190" height="12" fill="#1e3a5f"/>
+  <text x="155" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#93c5fd">User</text>
+  <text x="80" y="152" font-size="12" fill="#64748b">id, email, full_name</text>
+  <text x="80" y="170" font-size="12" fill="#64748b">hashed_password, is_active</text>
+
+  <!-- Arrow User → Child -->
+  <line x1="252" y1="145" x2="318" y2="145" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="285" y="136" text-anchor="middle" font-size="11" fill="#475569">1:N</text>
+
+  <!-- CHILD -->
+  <rect x="320" y="100" width="200" height="90" rx="12" fill="#1e293b" stroke="#a855f7" stroke-width="2" filter="url(#entityShadow)"/>
+  <rect x="320" y="100" width="200" height="32" rx="12" fill="#2d1b69"/>
+  <rect x="320" y="120" width="200" height="12" fill="#2d1b69"/>
+  <text x="420" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#d8b4fe">Child</text>
+  <text x="340" y="152" font-size="12" fill="#64748b">id, parent_id (FK→User)</text>
+  <text x="340" y="170" font-size="12" fill="#64748b">name, age, xp_total</text>
+
+  <!-- Arrow User → RefreshToken -->
+  <line x1="155" y1="192" x2="155" y2="258" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="168" y="230" font-size="11" fill="#475569">1:N</text>
+
+  <!-- REFRESHTOKEN -->
+  <rect x="60" y="260" width="190" height="90" rx="12" fill="#1e293b" stroke="#4b5563" stroke-width="1.5" filter="url(#entityShadow)"/>
+  <rect x="60" y="260" width="190" height="32" rx="12" fill="#1f2937"/>
+  <rect x="60" y="280" width="190" height="12" fill="#1f2937"/>
+  <text x="155" y="282" text-anchor="middle" font-size="15" font-weight="700" fill="#9ca3af">RefreshToken</text>
+  <text x="80" y="312" font-size="12" fill="#64748b">id, user_id, token_hash</text>
+  <text x="80" y="330" font-size="12" fill="#64748b">is_revoked, expires_at</text>
+
+  <!-- Arrow Child → Progress -->
+  <line x1="420" y1="192" x2="420" y2="258" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="433" y="230" font-size="11" fill="#475569">1:N</text>
+
+  <!-- PROGRESS -->
+  <rect x="320" y="260" width="200" height="90" rx="12" fill="#1e293b" stroke="#059669" stroke-width="1.5" filter="url(#entityShadow)"/>
+  <rect x="320" y="260" width="200" height="32" rx="12" fill="#064e3b"/>
+  <rect x="320" y="280" width="200" height="12" fill="#064e3b"/>
+  <text x="420" y="282" text-anchor="middle" font-size="15" font-weight="700" fill="#6ee7b7">Progress</text>
+  <text x="340" y="312" font-size="12" fill="#64748b">child_id, module_id</text>
+  <text x="340" y="330" font-size="12" fill="#64748b">completed_at, xp_earned</text>
+
+  <!-- Arrow Child → BadgeAward -->
+  <line x1="520" y1="145" x2="586" y2="145" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="553" y="136" text-anchor="middle" font-size="11" fill="#475569">1:N</text>
+
+  <!-- BADGEAWARD -->
+  <rect x="588" y="100" width="200" height="90" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" filter="url(#entityShadow)"/>
+  <rect x="588" y="100" width="200" height="32" rx="12" fill="#78350f"/>
+  <rect x="588" y="120" width="200" height="12" fill="#78350f"/>
+  <text x="688" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#fde68a">BadgeAward</text>
+  <text x="608" y="152" font-size="12" fill="#64748b">child_id, badge_id</text>
+  <text x="608" y="170" font-size="12" fill="#64748b">awarded_at</text>
+
+  <!-- Arrow BadgeAward → Badge -->
+  <line x1="790" y1="145" x2="856" y2="145" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="823" y="136" text-anchor="middle" font-size="11" fill="#475569">N:1</text>
+
+  <!-- BADGE -->
+  <rect x="858" y="100" width="200" height="90" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="2" filter="url(#entityShadow)"/>
+  <rect x="858" y="100" width="200" height="32" rx="12" fill="#78350f"/>
+  <rect x="858" y="120" width="200" height="12" fill="#78350f"/>
+  <text x="958" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#fde68a">Badge</text>
+  <text x="878" y="152" font-size="12" fill="#64748b">id, name, description</text>
+  <text x="878" y="170" font-size="12" fill="#64748b">icon, xp_value</text>
+
+  <!-- Arrow Badge ↔ ModuleBadge -->
+  <line x1="958" y1="192" x2="958" y2="258" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="971" y="230" font-size="11" fill="#475569">M:M</text>
+
+  <!-- MODULEBADGE (join) -->
+  <rect x="858" y="260" width="200" height="90" rx="12" fill="#1e293b" stroke="#78716c" stroke-width="1" filter="url(#entityShadow)"/>
+  <rect x="858" y="260" width="200" height="32" rx="12" fill="#292524"/>
+  <rect x="858" y="280" width="200" height="12" fill="#292524"/>
+  <text x="958" y="282" text-anchor="middle" font-size="15" font-weight="700" fill="#d6d3d1">ModuleBadge</text>
+  <text x="878" y="312" font-size="12" fill="#64748b">badge_id, module_id</text>
+  <text x="878" y="330" font-size="12" fill="#64748b">(association table)</text>
+
+  <!-- Arrow ModuleBadge → SkillModule -->
+  <line x1="1060" y1="305" x2="1126" y2="305" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- SKILLMODULE -->
+  <rect x="1128" y="260" width="210" height="90" rx="12" fill="#1e293b" stroke="#0ea5e9" stroke-width="2" filter="url(#entityShadow)"/>
+  <rect x="1128" y="260" width="210" height="32" rx="12" fill="#0c4a6e"/>
+  <rect x="1128" y="280" width="210" height="12" fill="#0c4a6e"/>
+  <text x="1233" y="282" text-anchor="middle" font-size="15" font-weight="700" fill="#7dd3fc">SkillModule</text>
+  <text x="1148" y="312" font-size="12" fill="#64748b">id, name, world_type</text>
+  <text x="1148" y="330" font-size="12" fill="#64748b">description, age_min/max</text>
+
+  <!-- Arrow SkillModule → Lesson -->
+  <line x1="1233" y1="352" x2="1233" y2="418" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="1246" y="390" font-size="11" fill="#475569">1:N</text>
+
+  <!-- LESSON -->
+  <rect x="1128" y="420" width="210" height="90" rx="12" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5" filter="url(#entityShadow)"/>
+  <rect x="1128" y="420" width="210" height="32" rx="12" fill="#0c4a6e"/>
+  <rect x="1128" y="440" width="210" height="12" fill="#0c4a6e"/>
+  <text x="1233" y="442" text-anchor="middle" font-size="15" font-weight="700" fill="#7dd3fc">Lesson</text>
+  <text x="1148" y="472" font-size="12" fill="#64748b">id, module_id, title</text>
+  <text x="1148" y="490" font-size="12" fill="#64748b">entry_node_id (FK→Node)</text>
+
+  <!-- Arrow Lesson → ScenarioNode (DAG entry) -->
+  <line x1="1128" y1="465" x2="1062" y2="530" stroke="#a855f7" stroke-width="2" marker-end="url(#arrPurple)" stroke-dasharray="6,3"/>
+  <text x="1075" y="488" font-size="11" fill="#a855f7">entry</text>
+
+  <!-- ===== DAG Section ===== -->
+  <!-- DAG highlight region -->
+  <rect x="500" y="410" width="600" height="460" rx="20" fill="#1a0a3e" stroke="#a855f7" stroke-width="2" opacity="0.4"/>
+  <text x="800" y="445" text-anchor="middle" font-size="14" font-weight="700" fill="#a855f7">Self-Referential Scenario DAG</text>
+
+  <!-- SCENARIONODE -->
+  <rect x="600" y="460" width="200" height="100" rx="12" fill="#2d1b69" stroke="#a855f7" stroke-width="2.5" filter="url(#dagHighlight)"/>
+  <rect x="600" y="460" width="200" height="32" rx="12" fill="#4c1d95"/>
+  <rect x="600" y="480" width="200" height="12" fill="#4c1d95"/>
+  <text x="700" y="482" text-anchor="middle" font-size="15" font-weight="700" fill="#d8b4fe">ScenarioNode</text>
+  <text x="620" y="514" font-size="12" fill="#a78bfa">id, npc_name, text</text>
+  <text x="620" y="532" font-size="12" fill="#a78bfa">node_type, lesson_id</text>
+  <text x="620" y="550" font-size="12" fill="#a78bfa">xp_reward</text>
+
+  <!-- Arrow ScenarioNode → ScenarioChoice -->
+  <line x1="700" y1="562" x2="700" y2="628" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrPurple)"/>
+  <text x="714" y="600" font-size="11" fill="#a855f7">1:N</text>
+
+  <!-- SCENARIOCHOICE -->
+  <rect x="580" y="630" width="240" height="100" rx="12" fill="#2d1b69" stroke="#a855f7" stroke-width="2.5" filter="url(#dagHighlight)"/>
+  <rect x="580" y="630" width="240" height="32" rx="12" fill="#4c1d95"/>
+  <rect x="580" y="650" width="240" height="12" fill="#4c1d95"/>
+  <text x="700" y="652" text-anchor="middle" font-size="15" font-weight="700" fill="#d8b4fe">ScenarioChoice</text>
+  <text x="600" y="684" font-size="12" fill="#a78bfa">id, node_id, text</text>
+  <text x="600" y="702" font-size="12" fill="#a78bfa">next_node_id (FK→Node)</text>
+  <text x="600" y="720" font-size="12" fill="#a78bfa">feedback_text, is_correct</text>
+
+  <!-- Self-referential loop arrow: ScenarioChoice.next_node_id → ScenarioNode -->
+  <path d="M 820 700 Q 920 700 920 510 Q 920 460 802 462" stroke="#f59e0b" stroke-width="2.5" fill="none" marker-end="url(#arrGold)" stroke-dasharray="8,4"/>
+  <text x="940" y="590" font-size="13" font-weight="700" fill="#fde68a">next_node_id</text>
+  <text x="940" y="608" font-size="12" fill="#fbbf24">self-referential</text>
+  <text x="940" y="626" font-size="12" fill="#fbbf24">back-pointer</text>
+
+  <!-- Arrow ScenarioNode ← ScenarioAttempt -->
+  <line x1="598" y1="510" x2="534" y2="510" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- SCENARIOATTEMPT -->
+  <rect x="316" y="460" width="216" height="100" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" filter="url(#entityShadow)"/>
+  <rect x="316" y="460" width="216" height="32" rx="12" fill="#064e3b"/>
+  <rect x="316" y="480" width="216" height="12" fill="#064e3b"/>
+  <text x="424" y="482" text-anchor="middle" font-size="15" font-weight="700" fill="#6ee7b7">ScenarioAttempt</text>
+  <text x="336" y="514" font-size="12" fill="#64748b">child_id, lesson_id</text>
+  <text x="336" y="532" font-size="12" fill="#64748b">current_node_id, status</text>
+  <text x="336" y="550" font-size="12" fill="#64748b">created_at</text>
+
+  <!-- Arrow Child → ScenarioAttempt -->
+  <line x1="420" y1="192" x2="424" y2="458" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
+
+  <!-- Arrow ScenarioAttempt → ScenarioAttemptChoice -->
+  <line x1="424" y1="562" x2="424" y2="628" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="438" y="600" font-size="11" fill="#475569">1:N</text>
+
+  <!-- SCENARIOATTEMPTCHOICE -->
+  <rect x="296" y="630" width="256" height="100" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" filter="url(#entityShadow)"/>
+  <rect x="296" y="630" width="256" height="32" rx="12" fill="#064e3b"/>
+  <rect x="296" y="650" width="256" height="12" fill="#064e3b"/>
+  <text x="424" y="652" text-anchor="middle" font-size="14" font-weight="700" fill="#6ee7b7">ScenarioAttemptChoice</text>
+  <text x="316" y="684" font-size="12" fill="#64748b">attempt_id, choice_id</text>
+  <text x="316" y="702" font-size="12" fill="#64748b">node_id, chosen_at</text>
+  <text x="316" y="720" font-size="12" fill="#a7f3d0">← full audit trail</text>
+
+  <!-- Legend -->
+  <rect x="60" y="780" width="480" height="90" rx="12" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+  <text x="80" y="806" font-size="14" font-weight="700" fill="#9ca3af">Legend</text>
+  <line x1="80" y1="820" x2="140" y2="820" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="8,3"/>
+  <text x="150" y="824" font-size="13" fill="#a78bfa">Scenario DAG back-reference</text>
+  <line x1="80" y1="848" x2="140" y2="848" stroke="#64748b" stroke-width="1.5"/>
+  <text x="150" y="852" font-size="13" fill="#94a3b8">Entity relationship (FK)</text>
+  <line x1="310" y1="820" x2="370" y2="820" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <text x="380" y="824" font-size="13" fill="#fde68a">next_node_id (self-ref)</text>
+
+  <!-- Entity count badge -->
+  <rect x="1370" y="780" width="190" height="90" rx="12" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="1465" y="822" text-anchor="middle" font-size="44" font-weight="900" fill="#a78bfa">13</text>
+  <text x="1465" y="852" text-anchor="middle" font-size="14" fill="#818cf8">Total Entities</text>
+</svg>

@@ -38,6 +38,18 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     refresh_token_expire_days: int = 7
+    password_reset_token_expire_minutes: int = 30
+    frontend_url: str = "http://localhost:5173"
+
+    # ── Email ────────────────────────────────────────────────────────────────
+    # If SMTP_HOST is empty, password reset emails are logged to stdout in dev.
+    smtp_host: str = ""
+    smtp_port: int = 587
+    smtp_username: str = ""
+    smtp_password: str = ""
+    smtp_from_email: str = "no-reply@skilio.local"
+    smtp_from_name: str = "Skilio"
+    smtp_use_tls: bool = True
 
     # ── CORS ──────────────────────────────────────────────────────────────────
     allowed_origins: List[str] = ["http://localhost:5173", "http://localhost:3000"]
@@ -53,6 +65,13 @@ class Settings(BaseSettings):
     @classmethod
     def parse_origins(cls, v):
         if isinstance(v, str):
+            import json
+            try:
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except (json.JSONDecodeError, ValueError):
+                pass
             return [o.strip() for o in v.split(",")]
         return v
 

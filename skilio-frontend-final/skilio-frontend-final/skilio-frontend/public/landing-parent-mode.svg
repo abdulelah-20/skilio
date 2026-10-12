@@ -1,0 +1,23 @@
+<svg width="820" height="560" viewBox="0 0 820 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="820" height="560" rx="40" fill="#0B1220"/>
+  <rect x="52" y="48" width="716" height="464" rx="28" fill="#F8FAFC"/>
+  <rect x="52" y="48" width="142" height="464" rx="28" fill="#102033"/>
+  <circle cx="123" cy="108" r="31" fill="#2DD4BF"/>
+  <rect x="88" y="174" width="70" height="10" rx="5" fill="#5EEAD4"/>
+  <rect x="88" y="214" width="88" height="10" rx="5" fill="#334155"/>
+  <rect x="88" y="254" width="74" height="10" rx="5" fill="#334155"/>
+  <text x="232" y="111" fill="#102033" font-family="Arial" font-size="31" font-weight="800">Parent Mode</text>
+  <text x="232" y="151" fill="#64748B" font-family="Arial" font-size="20">Maya's progress and safety signals</text>
+  <rect x="232" y="190" width="220" height="128" rx="18" fill="#CCFBF1"/>
+  <text x="258" y="235" fill="#0F766E" font-family="Arial" font-size="20" font-weight="800">Confidence</text>
+  <text x="258" y="289" fill="#102033" font-family="Arial" font-size="50" font-weight="900">78%</text>
+  <rect x="482" y="190" width="230" height="128" rx="18" fill="#DBEAFE"/>
+  <text x="508" y="235" fill="#1D4ED8" font-family="Arial" font-size="20" font-weight="800">Needs practice</text>
+  <text x="508" y="282" fill="#102033" font-family="Arial" font-size="27" font-weight="900">Trusted help</text>
+  <rect x="232" y="352" width="480" height="34" rx="17" fill="#E5E7EB"/>
+  <rect x="232" y="352" width="392" height="34" rx="17" fill="#14B8A6"/>
+  <rect x="232" y="416" width="480" height="34" rx="17" fill="#E5E7EB"/>
+  <rect x="232" y="416" width="282" height="34" rx="17" fill="#60A5FA"/>
+  <text x="232" y="342" fill="#102033" font-family="Arial" font-size="20" font-weight="800">Safe choices</text>
+  <text x="232" y="406" fill="#102033" font-family="Arial" font-size="20" font-weight="800">Module progress</text>
+</svg>

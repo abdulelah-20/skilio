@@ -108,6 +108,85 @@ class TestMe:
         resp = client.get("/api/auth/me")
         assert resp.status_code == 401
 
+
+class TestPasswordReset:
+    def test_forgot_password_returns_generic_message(self, client, monkeypatch):
+        client.post("/api/auth/register", json={
+            "email": "reset1@skilio.com",
+            "full_name": "Reset One",
+            "password": "Reset1234",
+        })
+        sent = {}
+
+        def fake_send(to_email: str, reset_url: str):
+            sent["to"] = to_email
+            sent["url"] = reset_url
+
+        monkeypatch.setattr("app.api.auth.send_password_reset_email", fake_send)
+        resp = client.post("/api/auth/forgot-password", json={"email": "reset1@skilio.com"})
+
+        assert resp.status_code == 200
+        assert "If that email is registered" in resp.json()["message"]
+        assert sent["to"] == "reset1@skilio.com"
+        assert "/reset-password?token=" in sent["url"]
+
+    def test_reset_password_updates_login_credentials(self, client, monkeypatch):
+        client.post("/api/auth/register", json={
+            "email": "reset2@skilio.com",
+            "full_name": "Reset Two",
+            "password": "Reset1234",
+        })
+        sent = {}
+
+        def fake_send(to_email: str, reset_url: str):
+            sent["url"] = reset_url
+
+        monkeypatch.setattr("app.api.auth.send_password_reset_email", fake_send)
+        client.post("/api/auth/forgot-password", json={"email": "reset2@skilio.com"})
+        token = sent["url"].split("token=", 1)[1]
+
+        resp = client.post("/api/auth/reset-password", json={
+            "token": token,
+            "password": "NewReset123",
+        })
+        assert resp.status_code == 200
+
+        old_login = client.post("/api/auth/login", data={
+            "username": "reset2@skilio.com",
+            "password": "Reset1234",
+        })
+        assert old_login.status_code == 401
+
+        new_login = client.post("/api/auth/login", data={
+            "username": "reset2@skilio.com",
+            "password": "NewReset123",
+        })
+        assert new_login.status_code == 200
+
+    def test_reset_password_rejects_reused_token(self, client, monkeypatch):
+        client.post("/api/auth/register", json={
+            "email": "reset3@skilio.com",
+            "full_name": "Reset Three",
+            "password": "Reset1234",
+        })
+        sent = {}
+
+        def fake_send(to_email: str, reset_url: str):
+            sent["url"] = reset_url
+
+        monkeypatch.setattr("app.api.auth.send_password_reset_email", fake_send)
+        client.post("/api/auth/forgot-password", json={"email": "reset3@skilio.com"})
+        token = sent["url"].split("token=", 1)[1]
+
+        assert client.post("/api/auth/reset-password", json={
+            "token": token,
+            "password": "Reusable123",
+        }).status_code == 200
+        assert client.post("/api/auth/reset-password", json={
+            "token": token,
+            "password": "Reusable456",
+        }).status_code == 400
+
     def test_me_invalid_token(self, client):
         resp = client.get("/api/auth/me", headers={"Authorization": "Bearer notavalidtoken"})
         assert resp.status_code == 401

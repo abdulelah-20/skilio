@@ -13,7 +13,7 @@ services:
       MYSQL_USER:          skilio
       MYSQL_PASSWORD:      ${MYSQL_PASSWORD:-skiliopass}
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -39,7 +39,7 @@ services:
       DATABASE_URL: mysql+pymysql://skilio:${MYSQL_PASSWORD:-skiliopass}@db:3306/skilio_db
       SECRET_KEY:   ${SECRET_KEY:-change_this_in_production_must_be_32_chars_min}
       DEBUG:        ${DEBUG:-false}
-      ALLOWED_ORIGINS: "http://localhost:5173,http://localhost:80,http://localhost"
+      ALLOWED_ORIGINS: '["http://localhost:5173","http://localhost:80","http://localhost"]'
     ports:
       - "8000:8000"
     volumes:
