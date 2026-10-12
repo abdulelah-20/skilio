@@ -28,10 +28,11 @@ import { LessonListPage }     from '@/pages/learn/LessonList'
 import { ScenarioPlayerPage } from '@/pages/learn/ScenarioPlayer'
 
 // Kids Mode pages
-import { KidsIndex }            from '@/pages/kids/KidsIndex'
-import { CharacterBuilderPage } from '@/pages/kids/CharacterBuilderPage'
-import { WorldSelectionPage }   from '@/pages/kids/WorldSelectionPage'
-import { WorldMissionsPage }    from '@/pages/kids/WorldMissionsPage'
+import { KidsIndex }             from '@/pages/kids/KidsIndex'
+import { CharacterBuilderPage }  from '@/pages/kids/CharacterBuilderPage'
+import { WorldSelectionPage }    from '@/pages/kids/WorldSelectionPage'
+import { WorldMissionsPage }     from '@/pages/kids/WorldMissionsPage'
+import { EarthquakeRoadmapPage } from '@/pages/kids/EarthquakeRoadmapPage'
 import { KidsMissionPlayerPage } from '@/pages/kids/KidsMissionPlayerPage'
 
 export const router = createBrowserRouter([
@@ -85,6 +86,7 @@ export const router = createBrowserRouter([
           { path: '/kids/hero-builder',               element: <CharacterBuilderPage /> },
           { path: '/kids/worlds',                     element: <WorldSelectionPage /> },
           { path: '/kids/worlds/:moduleId',           element: <WorldMissionsPage /> },
+          { path: '/kids/worlds/:moduleId/map',       element: <EarthquakeRoadmapPage /> },
           { path: '/kids/play/:moduleId/:lessonId',   element: <KidsMissionPlayerPage /> },
         ],
       },

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useScenarioStore } from '@/store/scenarioStore'
 import { useKidsStore, HEROES } from '@/store/kidsStore'
 import { useSubmitChoice } from '@/hooks/useScenario'
@@ -19,6 +19,9 @@ import '@/components/kids/mission/mission-visuals.css'
 export function KidsMissionPlayerPage() {
   const { moduleId, lessonId } = useParams<{ moduleId: string; lessonId: string }>()
   const navigate = useNavigate()
+  const location = useLocation()
+  const returnTo = (location.state as { returnTo?: string } | null)?.returnTo
+    ?? `/kids/worlds/${moduleId}`
 
   const { hero, heroColor, heroName } = useKidsStore()
   const heroInfo = HEROES.find((h) => h.id === hero)
@@ -47,7 +50,7 @@ export function KidsMissionPlayerPage() {
   useEffect(() => {
     if (attempt) return
     setIsResuming(true)
-    navigate(`/kids/worlds/${moduleId}`, { replace: true })
+    navigate(returnTo, { replace: true })
   }, [attempt, moduleId, navigate])
 
   useEffect(() => {
@@ -136,7 +139,7 @@ export function KidsMissionPlayerPage() {
             heroName={heroName}
             heroColor={heroColor}
             accentColor={config.theme.accentColor}
-            onExit={() => { resetScenario(); navigate(`/kids/worlds/${moduleId}`) }}
+            onExit={() => { resetScenario(); navigate(returnTo) }}
           />
           <div className="flex-1 flex flex-col items-center px-6 py-10 text-center animate-fade-in">
             <div
@@ -202,7 +205,7 @@ export function KidsMissionPlayerPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <button
-                onClick={() => { resetScenario(); navigate(`/kids/worlds/${moduleId}`) }}
+                onClick={() => { resetScenario(); navigate(returnTo) }}
                 className="kids-primary-button min-w-[210px]"
               >
                 More missions!
@@ -240,7 +243,7 @@ export function KidsMissionPlayerPage() {
           heroName={heroName}
           heroColor={heroColor}
           accentColor={config.theme.accentColor}
-          onExit={() => { resetScenario(); navigate(`/kids/worlds/${moduleId}`) }}
+          onExit={() => { resetScenario(); navigate(returnTo) }}
         />
 
         {/* Story + choices */}
@@ -296,7 +299,7 @@ export function KidsMissionPlayerPage() {
             ) : (
               <div style={{ textAlign: 'center', marginTop: 16 }}>
                 <button
-                  onClick={() => { resetScenario(); navigate(`/kids/worlds/${moduleId}`) }}
+                  onClick={() => { resetScenario(); navigate(returnTo) }}
                   className="btn-primary btn-lg"
                 >
                   Back to missions
