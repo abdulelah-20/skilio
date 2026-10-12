@@ -54,12 +54,13 @@ apiClient.interceptors.response.use(
 
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      // Skip hard-redirect for the refresh endpoint — a 401 there just means
-      // "no valid session", which is handled by the AuthProvider startup check.
-      const isRefreshCall = (error.config as { url?: string })?.url?.includes('/api/auth/refresh')
+      // Auth endpoints (login, register, refresh, me, etc.) handle their own
+      // 401s — let the calling mutation show the error message instead of
+      // hard-redirecting to landing. Only redirect on protected-resource 401s.
+      const isAuthEndpoint = (error.config as { url?: string })?.url?.startsWith('/api/auth/')
       useAuthStore.getState().clearAuth()
 
-      if (!isRefreshCall && window.location.pathname !== '/') {
+      if (!isAuthEndpoint && window.location.pathname !== '/') {
         window.location.href = '/'
       }
     }
