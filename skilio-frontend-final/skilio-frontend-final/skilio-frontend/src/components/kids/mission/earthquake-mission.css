@@ -1,0 +1,19 @@
+.earthquake-mission-page { min-height: 100dvh; color: #f8fafc; background: #0c0a20 url('/earthquake-bedroom.png') center center / cover no-repeat; position: relative; isolation: isolate; }
+.earthquake-mission-page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #09071908 0%, #100c2220 45%, #100b2ad9 100%); pointer-events: none; }
+.earthquake-mission-layout { min-height: calc(100dvh - 65px); display: grid; grid-template-columns: minmax(0,1.3fr) minmax(340px, .85fr); gap: clamp(20px,4vw,64px); align-items: center; max-width: 1600px; margin: auto; padding: clamp(24px,4vw,64px); }
+.earthquake-question-card { padding: clamp(24px,3vw,40px); border-radius: 28px; border: 1px solid #a78bfa45; background: linear-gradient(145deg,#211a3cf2,#100e27f5); box-shadow: 0 24px 80px #08051570, 0 0 45px #7c3aed18; backdrop-filter: blur(12px); }
+.earthquake-eyebrow { color: #b8a4f5; letter-spacing: .12em; font-size: 11px; font-weight: 900; margin-bottom: 16px; }
+.earthquake-question-card h1 { font-size: clamp(25px,2.4vw,36px); line-height: 1.25; margin-bottom: 16px; }
+.earthquake-hint,.earthquake-action-copy { color: #c4bdd7; line-height: 1.7; font-size: 15px; margin-bottom: 24px; }
+.earthquake-answer-list { display: grid; gap: 12px; }
+.earthquake-answer { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 14px; min-height: 76px; border-radius: 16px; background: #ffffff04; border: 1px solid #b8a4f526; color: #f3eefb; font-weight: 800; font-size: 15px; line-height: 1.45; transition: background 180ms, border-color 180ms, box-shadow 180ms; }
+.earthquake-answer:hover:not(:disabled) { border-color: #a78bfa88; background: #a78bfa12; }
+.earthquake-answer:focus-visible { outline: 3px solid #c4b5fd; outline-offset: 3px; }
+.earthquake-answer-icon { display: grid; place-items: center; flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: #a78bfa13; color: #c4b5fd; }
+.earthquake-answer.is-safe { border-color: #5eead4; background: #2dd4bf14; box-shadow: 0 0 25px #2dd4bf20; color: #99f6e4; }
+.earthquake-answer.is-retry { border-color: #c4b5fd88; background: #a78bfa14; }
+.earthquake-answer-mark { margin-left: auto; font-size: 23px; }
+.earthquake-feedback { border: 1px solid #5eead42e; background: #2dd4bf0c; color: #a7f3d0; border-radius: 16px; padding: 16px; margin-top: 20px; line-height: 1.7; font-weight: 700; }
+.earthquake-feedback p { color: #d4cbea; margin-top: 8px; }.earthquake-safe-check { color: #5eead4; font-size: 44px; }.earthquake-earned { color: #fcd34d; font-size: 26px; font-weight: 900; margin: 24px 0; }.earthquake-question-card > button { margin: 8px 8px 0 0; }
+@media (max-width: 1023px) { .earthquake-mission-layout { grid-template-columns: minmax(0,1fr) minmax(320px,1fr); gap: 20px; padding: 24px; }.earthquake-question-card { padding: 24px; }.earthquake-mission-page { background-position: 40% center; } }
+@media (max-width: 699px) { .earthquake-mission-layout { grid-template-columns: 1fr; padding: 16px; gap: 0; }.earthquake-scene-space { min-height: 260px; }.earthquake-mission-page { background-size: auto 540px; background-position: 37% 55px; }.earthquake-mission-page::before { background: linear-gradient(180deg,transparent 250px,#100b2a 570px); }.earthquake-question-card { border-radius: 24px; padding: 24px 18px; }.earthquake-answer { font-size: 14px; } }

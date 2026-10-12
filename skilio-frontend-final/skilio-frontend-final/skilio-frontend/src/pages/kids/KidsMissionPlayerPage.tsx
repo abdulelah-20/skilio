@@ -5,10 +5,12 @@ import { useKidsStore, HEROES } from '@/store/kidsStore'
 import { useSubmitChoice } from '@/hooks/useScenario'
 import { useModule } from '@/hooks/useModules'
 import { scenariosApi } from '@/api/scenarios'
+import { modulesApi } from '@/api/modules'
 import { getApiErrorMessage } from '@/api/client'
 import { Spinner } from '@/components/ui/Spinner'
 import type { ScenarioChoice } from '@/types'
 
+import { EarthquakeMission } from '@/components/kids/mission/EarthquakeMission'
 import { buildMissionConfig } from '@/components/kids/mission/worldTheme'
 import { WorldSceneBackground } from '@/components/kids/mission/WorldSceneBackground'
 import { VisualChoiceCard }     from '@/components/kids/mission/VisualChoiceCard'
@@ -23,7 +25,7 @@ export function KidsMissionPlayerPage() {
   const returnTo = (location.state as { returnTo?: string } | null)?.returnTo
     ?? `/kids/worlds/${moduleId}`
 
-  const { hero, heroColor, heroName } = useKidsStore()
+  const { hero, heroColor, heroName, selectedChild } = useKidsStore()
   const heroInfo = HEROES.find((h) => h.id === hero)
 
   const { data: module } = useModule(Number(moduleId))
@@ -47,11 +49,53 @@ export function KidsMissionPlayerPage() {
   const [feedbackMsg,  setFeedbackMsg]  = useState<string | null>(null)
   const [isTalking,    setIsTalking]    = useState(false)
 
+  // The original earthquake roadmap linked to the first space lesson.
+  // Keep that entry working while starting the real earthquake content.
   useEffect(() => {
-    if (attempt) return
+    if (moduleId !== '1' || lessonId !== '1' || !selectedChild) return
+    let cancelled = false
     setIsResuming(true)
-    navigate(returnTo, { replace: true })
-  }, [attempt, moduleId, navigate])
+    async function openEarthquakeMission() {
+      try {
+        const modules = await modulesApi.list()
+        const earthquake = modules.find((item) => item.title.toLowerCase().includes('earthquake'))
+        if (!earthquake) throw new Error('Earthquake content is not available yet.')
+        const detail = await modulesApi.get(earthquake.id)
+        const lesson = detail.lessons.find((item) => item.title === 'The Earthquake at Home')
+        if (!lesson) throw new Error('The bedroom mission is not available yet.')
+        if (cancelled) return
+        const fresh = await scenariosApi.startAttempt(selectedChild!.id, lesson.id)
+        if (cancelled) return
+        startScenario(fresh)
+        setIsResuming(false)
+        navigate(`/kids/play/${earthquake.id}/${lesson.id}`, {
+          replace: true, state: { returnTo: `/kids/worlds/${earthquake.id}/map` },
+        })
+      } catch (error) {
+        if (!cancelled) { setIsResuming(false); setPageError(getApiErrorMessage(error)) }
+      }
+    }
+    void openEarthquakeMission()
+    return () => { cancelled = true }
+  }, [moduleId, lessonId, selectedChild?.id, navigate, startScenario])
+
+  useEffect(() => {
+    if (moduleId === '1' && lessonId === '1' && selectedChild) return
+    if (attempt?.lesson_id === Number(lessonId)) return
+    if (!selectedChild || !Number.isInteger(Number(lessonId)) || Number(lessonId) < 1) {
+      navigate(returnTo, { replace: true })
+      return
+    }
+    let cancelled = false
+    setIsResuming(true)
+    setPageError(null)
+    scenariosApi.startAttempt(selectedChild.id, Number(lessonId)).then((fresh) => {
+      if (!cancelled) { startScenario(fresh); setIsResuming(false) }
+    }).catch((error) => {
+      if (!cancelled) { setPageError(getApiErrorMessage(error)); setIsResuming(false) }
+    })
+    return () => { cancelled = true }
+  }, [attempt?.lesson_id, moduleId, lessonId, selectedChild?.id, navigate, returnTo, startScenario])
 
   useEffect(() => {
     if (!pendingFeedback) return
@@ -115,12 +159,25 @@ export function KidsMissionPlayerPage() {
     background: `linear-gradient(180deg, ${config.theme.bgFrom} 0%, ${config.theme.bgTo} 100%)`,
   }
 
+  if (pageError && !attempt) {
+    return <div className="min-h-screen flex flex-col items-center justify-center gap-5 px-6" style={bgStyle}>
+      <p className="text-white text-center" role="alert">{pageError}</p>
+      <button className="kids-primary-button" onClick={() => navigate(returnTo)}>Back to missions</button>
+    </div>
+  }
+
   if (isResuming || !attempt) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={bgStyle}>
         <Spinner size="lg" className="border-white/20 border-t-white" />
       </div>
     )
+  }
+
+  if (module?.title.toLowerCase().includes('earthquake')) {
+    return <EarthquakeMission attempt={attempt} node={currentNode} moduleId={moduleId!}
+      heroEmoji={heroInfo?.emoji} heroName={heroName} heroColor={heroColor}
+      onExit={() => { resetScenario(); navigate(returnTo) }} onReplay={handlePlayAgain} />
   }
 
   const isComplete = attempt.status === 'completed'

@@ -537,6 +537,29 @@ def seed_badges(db):
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+def seed_earthquake(db):
+    module, _ = get_or_create(db, SkillModule, {"title": "Earthquake World"}, {
+        "title": "Earthquake World", "description": "Calm, practical earthquake preparedness.",
+        "age_min": 4, "age_max": 17, "is_published": True, "order_index": 0,
+    })
+    lesson, _ = get_or_create(db, Lesson, {"module_id": module.id, "title": "The Earthquake at Home"}, {
+        "module_id": module.id, "title": "The Earthquake at Home",
+        "description": "Find a safe place when your room starts shaking.", "xp_reward": 40, "order_index": 1,
+    })
+    if lesson.entry_node_id:
+        return
+    node = mk_node(db, lesson.id, "The room starts shaking. What should you do first?", NodeType.START)
+    lesson.entry_node_id = node.id
+    choices = [
+        ("Go under the sturdy table and hold on", True, "Great choice! Get under sturdy furniture, protect your head, and hold on until the shaking stops."),
+        ("Stand near the window", False, "Windows can break during shaking. Move away from glass and look for sturdy cover."),
+        ("Hide under the bed", False, "A bed is not reliable protective cover. Choose a sturdy table and protect your head."),
+        ("Run to the shelf", False, "Shelves and objects can fall during shaking. Stay away from them and find sturdy cover."),
+    ]
+    for index, (text, safe, feedback) in enumerate(choices):
+        mk_choice(db, node.id, text, None if safe else node.id, safe=safe, feedback=feedback, idx=index)
+
+
 def main():
     print("=" * 60)
     print("  Skilio — database seed")
@@ -562,6 +585,7 @@ def main():
         l5 = seed_foxy(db, forest)
         l6 = seed_ollie(db, forest)
 
+        seed_earthquake(db)
         seed_badges(db)
         db.commit()
 
