@@ -1,0 +1,19 @@
+.disaster-hero-section {
+  isolation: isolate;
+  background-color: #07050f;
+  background-image: url('/disaster-hero-background.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.disaster-hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(7,5,15,.96) 0%, rgba(7,5,15,.87) 25%, rgba(7,5,15,.5) 44%, rgba(7,5,15,.08) 64%, rgba(7,5,15,.22) 100%), linear-gradient(0deg, #07050f 0%, transparent 16%, transparent 88%, rgba(7,5,15,.35) 100%);
+}
+@media (max-width: 1023px) {
+  .disaster-hero-section { background-position: 60% center; }
+  .disaster-hero-section::before { background: linear-gradient(180deg, rgba(7,5,15,.92) 0%, rgba(7,5,15,.8) 35%, rgba(7,5,15,.15) 60%, rgba(7,5,15,.22) 85%, #07050f 100%); }
+}

@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
+import '@/components/disaster-hero.css'
 
 // ── Shared style tokens ───────────────────────────────────────────────────
 const BTN_PRIMARY: CSSProperties = {
@@ -43,41 +44,41 @@ const H2: CSSProperties = {
 // ── Data ─────────────────────────────────────────────────────────────────
 const WORLDS = [
   {
-    emoji: '🌌', name: 'Outer Space', tagline: 'Online & route safety',
-    desc: 'Cosmo the Astronaut guides kids through space scenarios — safe routes, online safety, and when to ask for help.',
+    emoji: '🏚️', name: 'Quake Zone', tagline: 'EARTHQUAKE SAFETY',
+    desc: 'Children learn what to do before, during, and after an earthquake — from preparing emergency supplies to drop, cover, and hold on.',
     gradient: 'linear-gradient(140deg, #0d1235 0%, #1e1b4b 55%, #312e81 100%)',
-    accent: '#818cf8', missions: '6 missions', ages: 'Ages 5–10',
+    accent: '#818cf8', missions: '4 missions', ages: 'Ages 5–10',
     border: 'rgba(129,140,248,0.22)', glow: 'rgba(129,140,248,0.12)',
   },
   {
-    emoji: '🌊', name: 'The Deep Sea', tagline: 'Stranger danger & trust',
-    desc: 'Splash the Dolphin leads ocean adventures teaching kids about trusted adults, uncomfortable secrets, and speaking up.',
+    emoji: '🌊', name: 'Rising Waters', tagline: 'FLOODS & WATER SAFETY',
+    desc: 'Kids practise spotting flood risks, avoiding dangerous water, and following safe evacuation guidance when water levels rise.',
     gradient: 'linear-gradient(140deg, #012a4a 0%, #0c4a6e 55%, #0369a1 100%)',
-    accent: '#38bdf8', missions: '5 missions', ages: 'Ages 6–12',
+    accent: '#38bdf8', missions: '4 missions', ages: 'Ages 6–12',
     border: 'rgba(56,189,248,0.22)', glow: 'rgba(56,189,248,0.1)',
   },
   {
-    emoji: '🌲', name: 'Enchanted Forest', tagline: 'Trusted adults & fire safety',
-    desc: 'Leo the Lion explores the forest with stories about recognising trusted adults, calling for help, and fire safety.',
+    emoji: '🔥', name: 'Fireline Forest', tagline: 'WILDFIRES & EVACUATION',
+    desc: 'Children learn how to respond to smoke, prepare essentials, and understand when and how to leave safely during wildfire emergencies.',
     gradient: 'linear-gradient(140deg, #071d0f 0%, #14532d 55%, #166534 100%)',
-    accent: '#4ade80', missions: '6 missions', ages: 'Ages 4–9',
+    accent: '#4ade80', missions: '4 missions', ages: 'Ages 4–9',
     border: 'rgba(74,222,128,0.22)', glow: 'rgba(74,222,128,0.08)',
   },
 ]
 
 const FEATURES = [
-  { emoji: '🌿', title: 'Branching Scenarios', desc: 'Every mission has real decision points. Kids see the outcome of each choice, building genuine safety instincts over time.' },
-  { emoji: '🦸', title: 'Hero Character Builder', desc: 'Pick Nova, Marina, Leaf, or Blaze as your guide. A named hero makes every mission feel personal and immersive.' },
-  { emoji: '🛡️', title: 'Age-Appropriate Content', desc: 'Three story worlds calibrated for ages 4–17. Each world uses scenarios matched to the child\'s developmental stage.' },
-  { emoji: '📊', title: 'Parent Insight Dashboard', desc: 'After every mission, parents get a plain-English summary: what was practiced, choices made, what to discuss at home.' },
-  { emoji: '⭐', title: 'XP & Badge System', desc: 'Safe choices earn experience points and unlock achievement badges. Rewards reinforce good judgment naturally and positively.' },
-  { emoji: '🔒', title: 'Fully Child-Safe', desc: 'No ads, no social features, no data sharing. A private, focused environment where children can practise without distraction.' },
+  { emoji: '🌿', title: 'Branching Scenarios', desc: 'Every mission includes real decision points. Kids see the consequences of each choice and build stronger safety instincts over time.' },
+  { emoji: '🦸', title: 'Hero Guide System', desc: 'Children choose a familiar guide for their missions, making the experience more personal, engaging, and supportive.' },
+  { emoji: '🛡️', title: 'Age-Appropriate Learning', desc: 'Disaster missions are adapted for ages 4–17, with content and decisions matched to the child’s developmental level.' },
+  { emoji: '📊', title: 'Parent Insight Dashboard', desc: 'After every mission, parents receive a clear summary of what was practised, what choices were made, and what to reinforce at home.' },
+  { emoji: '⭐', title: 'XP & Badge System', desc: 'Safe choices earn experience points and unlock badges, helping preparedness feel rewarding instead of overwhelming.' },
+  { emoji: '🔒', title: 'Fully Child-Safe', desc: 'No ads, no social features, and no distracting content — just a focused environment where children can practise emergency readiness safely.' },
 ]
 
 const STEPS = [
-  { num: '01', emoji: '👤', title: 'Create a child profile', desc: 'Add each child with their name and age. Skilio tailors the story worlds to match their stage.' },
-  { num: '02', emoji: '🎮', title: 'Child plays the mission', desc: 'Kids pick their hero, enter a world, and make real branching choices that teach safety skills.' },
-  { num: '03', emoji: '📋', title: 'Parents review signals', desc: 'See every choice, badge, and a suggested conversation topic in a clean, calm dashboard.' },
+  { num: '01', emoji: '👤', title: 'Create a child profile', desc: 'Add each child with their name and age. Skilio adapts missions and safety guidance to match their stage.' },
+  { num: '02', emoji: '🎮', title: 'Child plays the mission', desc: 'Kids choose a guide, enter a disaster world, and make branching decisions that teach them how to respond safely.' },
+  { num: '03', emoji: '📋', title: 'Parents review progress', desc: 'See every mission, skill signal, and suggested discussion point in one calm, easy-to-follow dashboard.' },
 ]
 
 // Deterministic star positions — stable across re-renders
@@ -164,11 +165,10 @@ export function LandingPage() {
       </nav>
 
       {/* ══ HERO ═════════════════════════════════════════════════════════ */}
-      <section style={{
+      <section className="disaster-hero-section" style={{
         position: 'relative', overflow: 'hidden',
         minHeight: '92vh',
         display: 'flex', alignItems: 'center',
-        background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(124,58,237,0.3) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 85% 60%, rgba(110,231,216,0.1) 0%, transparent 50%), #07050f',
         padding: 'clamp(3rem,8vh,5rem) clamp(1rem,4vw,2rem)',
       }}>
         {/* Star field */}
@@ -183,12 +183,12 @@ export function LandingPage() {
           }} />
         ))}
 
-        <div style={{ maxWidth: 1180, margin: '0 auto', width: '100%' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 'clamp(2rem,6vw,5rem)', alignItems: 'center' }}>
 
             {/* Copy */}
             <div>
-              <div style={EYEBROW}>✦ Life Skills Learning Platform</div>
+              <div style={EYEBROW}>✦ NATURAL DISASTERS LEARNING PLATFORM</div>
 
               <h1 style={{
                 fontFamily: '"Fredoka One", cursive',
@@ -200,12 +200,11 @@ export function LandingPage() {
                 <span style={{
                   background: 'linear-gradient(125deg, #a78bfa 0%, #6ee7d8 100%)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                }}>real safety</span>{' '}
-                decisions.
+                }}>real safety skills.</span>
               </h1>
 
               <p style={{ fontSize: 'clamp(0.95rem,2vw,1.1rem)', color: 'rgba(248,250,252,0.62)', lineHeight: 1.75, marginBottom: '2rem', maxWidth: 510 }}>
-                Skilio is a scenario-based learning platform where children navigate branching story missions to practise safety decisions — while parents get a clear view of every choice and skill signal.
+                Skilio is a scenario-based learning platform where children explore real-life natural disaster situations — like earthquakes, floods, fires, and storms — and practise safe decisions while parents get a clear view of their progress.
               </p>
 
               <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', marginBottom: '2.25rem' }}>
@@ -231,87 +230,7 @@ export function LandingPage() {
               </div>
             </div>
 
-            {/* Mission card visual */}
-            <div className="hidden lg:block" style={{ position: 'relative', padding: '2.5rem 1.5rem' }}>
-              {/* Main card */}
-              <div style={{
-                background: 'linear-gradient(140deg, rgba(30,27,75,0.97), rgba(13,10,26,0.99))',
-                border: '1px solid rgba(129,140,248,0.22)',
-                borderRadius: 22, padding: '1.75rem',
-                boxShadow: '0 32px 80px rgba(124,58,237,0.22), 0 0 0 1px rgba(255,255,255,0.04)',
-              }}>
-                {/* Header */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1.25rem', paddingBottom: '1.1rem', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                  <span style={{ fontSize: '1.7rem' }}>🌌</span>
-                  <div>
-                    <div style={{ fontSize: '0.68rem', color: '#818cf8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Outer Space · Mission 3</div>
-                    <div style={{ fontSize: '0.9rem', color: '#f8fafc', fontWeight: 800 }}>The Unknown Call</div>
-                  </div>
-                  <div style={{ marginLeft: 'auto', background: 'rgba(251,191,36,0.12)', border: '1px solid rgba(251,191,36,0.25)', borderRadius: 100, padding: '0.2rem 0.65rem', fontSize: '0.72rem', color: '#fbbf24', fontWeight: 800 }}>+40 XP</div>
-                </div>
 
-                {/* Scenario */}
-                <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 13, padding: '0.95rem 1.05rem', marginBottom: '1rem' }}>
-                  <p style={{ fontSize: '0.88rem', color: 'rgba(248,250,252,0.78)', lineHeight: 1.65, margin: 0 }}>
-                    A message appears on your tablet — someone you don't recognise wants to video call you.
-                  </p>
-                  <p style={{ fontSize: '0.9rem', color: '#f8fafc', fontWeight: 800, margin: '0.55rem 0 0' }}>What do you do?</p>
-                </div>
-
-                {/* Choices */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {[
-                    { text: 'Answer — maybe it\'s a friend', safe: false },
-                    { text: 'Show a parent or trusted adult', safe: true },
-                    { text: 'Ignore it and keep playing', safe: false },
-                  ].map((c) => (
-                    <div key={c.text} style={{
-                      padding: '0.65rem 1rem', borderRadius: 11,
-                      background: c.safe ? 'rgba(34,197,94,0.1)' : 'rgba(255,255,255,0.03)',
-                      border: `1px solid ${c.safe ? 'rgba(34,197,94,0.3)' : 'rgba(255,255,255,0.07)'}`,
-                      fontSize: '0.84rem', fontWeight: 700,
-                      color: c.safe ? '#86efac' : 'rgba(248,250,252,0.6)',
-                      display: 'flex', alignItems: 'center', gap: '0.5rem',
-                    }}>
-                      <span style={{ fontSize: '0.65rem', opacity: 0.7 }}>{c.safe ? '●' : '○'}</span>
-                      {c.text}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Floating parent insight */}
-              <div style={{
-                position: 'absolute', bottom: '4%', left: '-4%',
-                background: 'rgba(248,250,252,0.97)',
-                borderRadius: 15, padding: '0.85rem 1.05rem',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.32)',
-                width: 190,
-                animation: 'float 3.5s ease-in-out infinite',
-              }}>
-                <div style={{ fontSize: '0.65rem', color: '#0f766e', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.3rem' }}>Parent Signal</div>
-                <div style={{ fontSize: '0.88rem', color: '#0f172a', fontWeight: 900, marginBottom: '0.4rem' }}>Online safety ↑</div>
-                <div style={{ display: 'flex', gap: '3px', marginBottom: '0.3rem' }}>
-                  {[1,2,3,4,5].map((i) => (
-                    <div key={i} style={{ flex: 1, height: 5, borderRadius: 3, background: i <= 4 ? '#22c55e' : '#e2e8f0' }} />
-                  ))}
-                </div>
-                <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 700 }}>Confidence 82%</div>
-              </div>
-
-              {/* XP badge */}
-              <div style={{
-                position: 'absolute', top: '10%', right: '2%',
-                width: 56, height: 56, borderRadius: '50%',
-                background: 'linear-gradient(135deg, #fbbf24, #d97706)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 4px 18px rgba(251,191,36,0.5)',
-                animation: 'float 2.8s ease-in-out infinite 0.7s',
-              }}>
-                <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>⭐</span>
-                <span style={{ fontSize: '0.58rem', fontWeight: 900, color: '#78350f' }}>40 XP</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -320,7 +239,7 @@ export function LandingPage() {
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto', padding: '1.6rem clamp(1rem,4vw,2rem)' }}>
           <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: '1.5rem', textAlign: 'center' }}>
-            {[['3','Story Worlds'],['17','Branching Missions'],['Ages 4–17','Full Age Coverage'],['100%','Child-Safe & Ad-Free']].map(([v,l]) => (
+            {[['6','Disaster Worlds'],['24','Branching Missions'],['Ages 4–17','Age-Appropriate Learning'],['100%','Child-Safe & Ad-Free']].map(([v,l]) => (
               <div key={l}>
                 <div style={{ fontFamily: '"Fredoka One", cursive', fontSize: '1.75rem', color: '#f8fafc', fontWeight: 900, lineHeight: 1 }}>{v}</div>
                 <div style={{ fontSize: '0.78rem', color: 'rgba(248,250,252,0.42)', fontWeight: 700, marginTop: '0.2rem' }}>{l}</div>
@@ -334,10 +253,10 @@ export function LandingPage() {
       <section id="worlds" style={{ padding: 'clamp(4rem,8vh,6rem) clamp(1rem,4vw,2rem)' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div style={EYEBROW}>Three Story Worlds</div>
-            <h2 style={H2}>Every world teaches a different kind of safety.</h2>
+            <div style={EYEBROW}>DISASTER WORLDS</div>
+            <h2 style={H2}>Every world prepares kids for a different kind of disaster.</h2>
             <p style={{ color: 'rgba(248,250,252,0.52)', maxWidth: 530, margin: '0 auto', lineHeight: 1.7, fontSize: '0.975rem' }}>
-              From online safety in Outer Space to trusted adults in the Enchanted Forest — each themed world uses narrative missions to teach skills that transfer to real life.
+              From earthquakes and floods to storms and wildfires, each themed world uses interactive missions to help children build calm, practical safety skills for real life.
             </p>
           </div>
 
@@ -375,15 +294,15 @@ export function LandingPage() {
             {/* Copy */}
             <div>
               <div style={EYEBROW}>For Kids</div>
-              <h2 style={H2}>Not school software.<br />A proper mission room.</h2>
+              <h2 style={H2}>Not school software.<br />A real mission adventure.</h2>
               <p style={{ color: 'rgba(248,250,252,0.58)', lineHeight: 1.75, fontSize: '0.975rem', marginBottom: '2rem' }}>
-                Kids Mode is designed to feel like entering a world — not filling out a form. Children pick their hero, read the story, make real decisions, and discover what happens next.
+                Kids Mode is designed to feel like entering a world — not filling out a worksheet. Children choose their guide, step into a disaster mission, make real decisions, and discover what happens next.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                 {[
-                  { e: '🦸', t: 'Hero Identity',      d: 'Pick Nova, Marina, Leaf, or Blaze. A named hero makes every mission feel personal and theirs.' },
-                  { e: '📖', t: 'Story-First Design',  d: 'Missions pause at a real safety moment and present branching choices — not multiple-choice quizzes.' },
-                  { e: '⭐', t: 'XP & Badges',         d: 'Safe choices earn XP and unlock achievement badges. Rewards reinforce good judgment naturally.' },
+                  { e: '🦸', t: 'Hero Guide',      d: 'Pick Nova, Marina, Leaf, or Blaze. A familiar guide makes every mission feel more personal, supportive, and fun.' },
+                  { e: '📖', t: 'Story-First Missions',  d: 'Each mission places kids inside a real-life emergency moment and lets them explore choices — not just memorise answers.' },
+                  { e: '⭐', t: 'XP & Badges',         d: 'Safe decisions earn XP and unlock achievement badges. Rewards help children stay engaged while building practical preparedness skills.' },
                 ].map((f) => (
                   <div key={f.t} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                     <div style={{
@@ -408,7 +327,7 @@ export function LandingPage() {
                 borderRadius: 22, padding: '1.75rem',
                 boxShadow: '0 20px 60px rgba(124,58,237,0.18)',
               }}>
-                <div style={{ fontSize: '0.7rem', color: '#818cf8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>Choose your hero</div>
+                <div style={{ fontSize: '0.7rem', color: '#818cf8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>CHOOSE YOUR GUIDE</div>
                 <div className="grid grid-cols-2" style={{ gap: '0.75rem', marginBottom: '1.25rem' }}>
                   {[
                     { e: '🚀', n: 'Nova',   c: '#818cf8', sel: true },
@@ -432,8 +351,8 @@ export function LandingPage() {
                   background: 'rgba(129,140,248,0.07)', border: '1px solid rgba(129,140,248,0.17)',
                   borderRadius: 13, padding: '1rem 1.1rem',
                 }}>
-                  <div style={{ fontWeight: 800, color: '#f8fafc', fontSize: '0.88rem', marginBottom: '0.3rem' }}>🌌 Nova is ready for your next mission!</div>
-                  <div style={{ fontSize: '0.8rem', color: 'rgba(248,250,252,0.5)' }}>Outer Space · Mission 3 of 6 · "The Unknown Call"</div>
+                  <div style={{ fontWeight: 800, color: '#f8fafc', fontSize: '0.88rem', marginBottom: '0.3rem' }}>Nova is ready for your next mission!</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(248,250,252,0.5)' }}>Earthquake World · Mission 1 of 4 · "The Ground Starts Shaking"</div>
                 </div>
               </div>
             </div>
@@ -454,8 +373,8 @@ export function LandingPage() {
               {/* Top */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
                 <div>
-                  <div style={{ fontFamily: '"Fredoka One", cursive', fontSize: '1.1rem', color: '#0f172a', fontWeight: 900 }}>Maya's progress</div>
-                  <div style={{ fontSize: '0.76rem', color: '#64748b', fontWeight: 600 }}>Age 8 · Deep Sea World</div>
+                  <div style={{ fontFamily: '"Fredoka One", cursive', fontSize: '1.1rem', color: '#0f172a', fontWeight: 900 }}>Maya’s preparedness</div>
+                  <div style={{ fontSize: '0.76rem', color: '#64748b', fontWeight: 600 }}>Age 8 · Earthquake World</div>
                 </div>
                 <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 100, padding: '0.22rem 0.75rem', fontSize: '0.74rem', color: '#15803d', fontWeight: 800 }}>● Active</div>
               </div>
@@ -465,7 +384,7 @@ export function LandingPage() {
                 {[
                   { l: 'Total XP',   v: '1,240', c: '#7c3aed', bg: '#faf5ff' },
                   { l: 'Badges',     v: '12',    c: '#0284c7', bg: '#f0f9ff' },
-                  { l: 'Confidence', v: '78%',   c: '#15803d', bg: '#f0fdf4' },
+                  { l: 'Preparedness Confidence', v: '78%',   c: '#15803d', bg: '#f0fdf4' },
                 ].map((s) => (
                   <div key={s.l} style={{ background: s.bg, borderRadius: 11, padding: '0.75rem', textAlign: 'center' }}>
                     <div style={{ fontFamily: '"Fredoka One", cursive', fontSize: '1.35rem', color: s.c, fontWeight: 900 }}>{s.v}</div>
@@ -477,9 +396,9 @@ export function LandingPage() {
               {/* Module progress bars */}
               <div style={{ marginBottom: '1rem' }}>
                 {[
-                  { n: '🌊 The Deep Sea',       p: 80, c: '#0284c7' },
-                  { n: '🌌 Outer Space',         p: 50, c: '#7c3aed' },
-                  { n: '🌲 Enchanted Forest',    p: 20, c: '#16a34a' },
+                  { n: '🏚️ Earthquake World',       p: 80, c: '#0284c7' },
+                  { n: '🌊 Flood Safety',         p: 50, c: '#7c3aed' },
+                  { n: '🔥 Wildfire Readiness',    p: 20, c: '#16a34a' },
                 ].map((m) => (
                   <div key={m.n} style={{ marginBottom: '0.5rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.18rem' }}>
@@ -498,7 +417,7 @@ export function LandingPage() {
                 <span style={{ fontSize: '1.05rem', marginTop: '0.05rem' }}>💡</span>
                 <div>
                   <div style={{ fontSize: '0.73rem', fontWeight: 800, color: '#92400e', marginBottom: '0.18rem' }}>Next practice at home</div>
-                  <div style={{ fontSize: '0.82rem', color: '#78350f', lineHeight: 1.55 }}>Talk about how Maya would respond if a stranger asked her to keep a secret from parents.</div>
+                  <div style={{ fontSize: '0.82rem', color: '#78350f', lineHeight: 1.55 }}>Talk about where Maya should go during an earthquake and what items belong in a family emergency kit.</div>
                 </div>
               </div>
             </div>
@@ -506,15 +425,15 @@ export function LandingPage() {
             {/* Copy */}
             <div>
               <div style={{ ...EYEBROW, background: 'rgba(124,58,237,0.07)', borderColor: 'rgba(124,58,237,0.2)', color: '#7c3aed' }}>For Parents</div>
-              <h2 style={{ ...H2, color: '#0f172a' }}>A calm, clear view of every choice your child made.</h2>
+              <h2 style={{ ...H2, color: '#0f172a' }}>A calm, clear view of how your child responds in emergencies.</h2>
               <p style={{ color: '#475569', lineHeight: 1.75, fontSize: '0.975rem', marginBottom: '2rem' }}>
-                After every mission, parents get a plain-English summary: what was practised, how choices were made, and one specific thing to discuss at home.
+                After every mission, parents receive a simple summary of what was practised, how decisions were made, and which preparedness skills may need more support at home.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                 {[
-                  { e: '📊', t: 'Progress Clarity',        d: 'XP, badges, module completion, and confidence indicators in one clean, readable view.' },
-                  { e: '🔍', t: 'Choice History',           d: 'Review the exact decision each child made in every mission and the reasoning behind it.' },
-                  { e: '💬', t: 'Conversation Starters',    d: 'Skilio suggests one talking point after each mission to continue the learning at home.' },
+                  { e: '📊', t: 'Preparedness Progress',        d: 'Track confidence, completed missions, and safety-skill development in one clear, easy-to-read view.' },
+                  { e: '🔍', t: 'Decision History',           d: 'Review the choices your child made during each scenario and see how they responded to different disaster situations.' },
+                  { e: '💬', t: 'Home Practice Prompts',    d: 'Skilio suggests practical follow-up conversations and simple preparedness reminders to continue the learning at home.' },
                 ].map((f) => (
                   <div key={f.t} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                     <div style={{
@@ -539,7 +458,7 @@ export function LandingPage() {
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <div style={EYEBROW}>How It Works</div>
-            <h2 style={H2}>One loop connects play, learning, and home.</h2>
+            <h2 style={H2}>One loop connects play, preparedness, and home.</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '2rem', position: 'relative' }}>
             {STEPS.map((s, i) => (
@@ -576,7 +495,7 @@ export function LandingPage() {
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '2.75rem' }}>
             <div style={EYEBROW}>Platform Features</div>
-            <h2 style={H2}>Built specifically for child safety education.</h2>
+            <h2 style={H2}>Built specifically for child disaster preparedness.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '1.1rem' }}>
             {FEATURES.map((f) => (
@@ -608,10 +527,10 @@ export function LandingPage() {
             fontSize: 'clamp(1.85rem,4vw,2.8rem)',
             color: '#f8fafc', fontWeight: 900, marginBottom: '1.1rem', lineHeight: 1.14,
           }}>
-            Start your child's safety journey today.
+            Start your child’s preparedness journey today.
           </h2>
           <p style={{ fontSize: '1.02rem', color: 'rgba(248,250,252,0.58)', marginBottom: '2.25rem', lineHeight: 1.72 }}>
-            Free to start. No credit card. No ads. Just a focused, safe place for children to rehearse the decisions that matter.
+            Free to start. No credit card. No ads. Just a safe, focused place for children to build confidence and practise what to do during real-world disasters.
           </p>
           <div style={{ display: 'flex', gap: '0.85rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {token ? (
@@ -638,7 +557,7 @@ export function LandingPage() {
             }}>S</div>
             <span style={{ fontFamily: '"Fredoka One", cursive', fontSize: '1.05rem', color: '#f8fafc' }}>Skilio</span>
           </Link>
-          <p style={{ color: 'rgba(248,250,252,0.32)', fontSize: '0.8rem', margin: 0 }}>Kids rehearse safer choices. Parents understand the signals.</p>
+          <p style={{ color: 'rgba(248,250,252,0.32)', fontSize: '0.8rem', margin: 0 }}>Kids practise disaster readiness. Parents understand the signals.</p>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             {['hello@skilio.app','support@skilio.app'].map((e) => (
               <a key={e} href={`mailto:${e}`} style={{ color: 'rgba(248,250,252,0.42)', textDecoration: 'none', fontSize: '0.8rem', fontWeight: 700 }}>{e}</a>
